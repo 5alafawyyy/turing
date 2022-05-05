@@ -109,6 +109,7 @@ class _ForgetViewBodyState extends State<ForgetViewBody> {
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {
                         setState(() {
+                          Get.back();
                           isLoading = true;
                         });
                       }else {}
