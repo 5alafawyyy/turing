@@ -36,12 +36,12 @@ class HomeController extends GetxController{
           _titleAppbar = 'Articles';
           break;
         }
-      case 3 :
-        {
-          _currentScreen = ProfileView();
-          _titleAppbar = 'Profile';
-          break;
-        }
+      // case 3 :
+      //   {
+      //     _currentScreen = ProfileView();
+      //     _titleAppbar = 'Profile';
+      //     break;
+      //   }
     }
     update();
   }
