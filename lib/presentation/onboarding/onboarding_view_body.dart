@@ -25,11 +25,11 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
         inactiveBulletColor: lightColor,
         activeBulletColor: darkColor,
         // backgroundProvider: NetworkImage('https://picsum.photos/720/1280'),
-        skipCallback: () {
-          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          //   content: Text("Skip clicked"),
-          // ));
-        },
+        // skipCallback: () {
+        //   // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        //   //   content: Text("Skip clicked"),
+        //   // ));
+        // },
         finishCallback: () {
           Get.offNamed(LoginView.id);
 
