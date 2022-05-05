@@ -1,45 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:turing/controllers/drawer_controller.dart';
 import 'package:turing/controllers/home_controller.dart';
 import 'package:turing/core/constants/styles.dart';
+import 'package:turing/core/widgets/custom_drawer.dart';
 
-class ControlView extends GetWidget<HomeController> {
+class ControlView extends GetView<DrawerControllerView> {
   ControlView({Key? key}) : super(key: key);
-
   static String id = '/controlView';
+
+  var drawerController =  Get.put(DrawerControllerView());
   @override
   Widget build(BuildContext context){
     return GetBuilder<HomeController>(
         builder: (controller) {
           return Scaffold(
             backgroundColor: whiteColor,
-              appBar: AppBar(
-                backgroundColor: whiteColor,
-                foregroundColor: kSecondColor,
-                shadowColor: kMainColor,
-                elevation: 0.5,
-                title:  GetBuilder<HomeController>(
-                  builder: (controller) => Text(
-                    controller.titleAppbar,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+            appBar: customAppBar(context, GestureDetector(
+              onTap: (){
+               drawerController.openDrawer();
+              },
+              child: Tab(
+                icon: CircleAvatar(
+                  backgroundImage: AssetImage(
+                    'assets/images/ahmedkhallaf.jpeg',
                   ),
                 ),
-                centerTitle: true,
-                actions:
-                [
-                  IconButton(
-                    onPressed: (){
-                      showSearch(
-                        context: context,
-                        delegate: CustomSearchDelegate(),
-                      );
-                    },
-                    icon: const Icon(Icons.search),
-                  ),
-                ],
               ),
+            ),),
+            key: drawerController.scaffoldKey,
+            drawer: CustomDrawer(),
             body: controller.currentScreen,
             bottomNavigationBar: bottomNavigationBar(),
           );
@@ -74,7 +64,9 @@ class ControlView extends GetWidget<HomeController> {
         selectedItemColor: itemColor,
         unselectedItemColor: kSecondColor,
         type: BottomNavigationBarType.fixed,
-        elevation: 0,
+        elevation: 10,
+
+
         items:
         const [
           BottomNavigationBarItem(
@@ -122,21 +114,21 @@ class ControlView extends GetWidget<HomeController> {
               Icons.article_outlined,
             ),
           ),
-          BottomNavigationBarItem(
-            activeIcon: Text(
-              'Profile',
-              style: TextStyle(
-                height: 2.7,
-                fontWeight: FontWeight.bold,
-                fontSize: 15.0,
-                color: itemColor,
-              ),
-            ),
-            label: '',
-            icon: Icon(
-              Icons.person_outline,
-            ),
-          ),
+          // BottomNavigationBarItem(
+          //   activeIcon: Text(
+          //     'Profile',
+          //     style: TextStyle(
+          //       height: 2.7,
+          //       fontWeight: FontWeight.bold,
+          //       fontSize: 15.0,
+          //       color: itemColor,
+          //     ),
+          //   ),
+          //   label: '',
+          //   icon: Icon(
+          //     Icons.person_outline,
+          //   ),
+          // ),
         ],
         currentIndex: controller.navigatorValue,
         onTap: (index) {
@@ -248,4 +240,42 @@ class CustomSearchDelegate extends SearchDelegate{
 
 
 
+}
+
+customAppBar( context, leading) {
+  return AppBar(
+    backgroundColor: whiteColor,
+    foregroundColor: kSecondColor,
+    shadowColor: kMainColor,
+    elevation: 0.5,
+    leading: leading,
+    // IconButton(
+    //   onPressed: (){
+    //
+    //   },
+    //   icon: const Icon(Icons.account_circle),
+    // )
+
+    title:  GetBuilder<HomeController>(
+      builder: (controller) => Text(
+        controller.titleAppbar,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
+    centerTitle: true,
+    actions:
+    [
+      IconButton(
+        onPressed: (){
+          showSearch(
+            context: context,
+            delegate: CustomSearchDelegate(),
+          );
+        },
+        icon: const Icon(Icons.search),
+      ),
+    ],
+  );
 }

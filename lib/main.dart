@@ -12,6 +12,7 @@ import 'package:turing/presentation/home/home_view.dart';
 import 'package:turing/presentation/onboarding/obboarding_view.dart';
 import 'package:turing/presentation/profile/profile_view.dart';
 import 'package:turing/presentation/rooms/rooms_view.dart';
+import 'package:turing/presentation/setting/setting_view.dart';
 import 'package:turing/presentation/splash/splash_view.dart';
 
 void main() {
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: RoomsView.id, page: ()=> const RoomsView()),
         GetPage(name: ArticlesView.id, page: ()=> const ArticlesView()),
         GetPage(name: ProfileView.id, page: ()=> const ProfileView()),
+        GetPage(name: SettingView.id, page: ()=> const SettingView()),
       ],
 
       title: 'Turing Application',

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turing/core/constants/styles.dart';
-import 'package:turing/presentation/auth/login/login_view.dart';
 
-class ProfileViewBody extends StatelessWidget {
-  const ProfileViewBody({Key? key}) : super(key: key);
+class SettingViewBody extends StatelessWidget {
+  const SettingViewBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +15,10 @@ class ProfileViewBody extends StatelessWidget {
           onPressed: () => Get.back(),
         ),
         title: const Text(
-          'Profile',
+          'Settings',
           style: TextStyle(
-          fontWeight: FontWeight.w400,
-        ),
+            fontWeight: FontWeight.w400,
+          ),
         ),
         centerTitle: false,
         backgroundColor: kMainColor,
@@ -27,19 +26,17 @@ class ProfileViewBody extends StatelessWidget {
         shadowColor: kMainColor,
         elevation: 8,
       ),
-      body: Center(
-        child: MaterialButton(
-          onPressed: () { Get.offAllNamed(LoginView.id); },
+      body: const Center(
+
           child: Text(
-            'Logout',
+            'Settings',
             style: TextStyle(
               color: kSecondColor,
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
             ),
           ),
-          color: lightColor,
-        ),
+
       ),
     );
   }
