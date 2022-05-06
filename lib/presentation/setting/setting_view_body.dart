@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:turing/core/constants/styles.dart';
+import 'package:turing/core/utils/styles.dart';
 
 class SettingViewBody extends StatelessWidget {
   const SettingViewBody({Key? key}) : super(key: key);
