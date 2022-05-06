@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turing/controllers/drawer_controller.dart';
 import 'package:turing/controllers/home_controller.dart';
-import 'package:turing/core/constants/styles.dart';
+import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/custom_drawer.dart';
 
 class ControlView extends GetView<DrawerControllerView> {
@@ -247,7 +247,7 @@ customAppBar( context, leading) {
     backgroundColor: whiteColor,
     foregroundColor: kSecondColor,
     shadowColor: kMainColor,
-    elevation: 0.5,
+    elevation: 0,
     leading: leading,
     // IconButton(
     //   onPressed: (){

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_overboard/flutter_overboard.dart';
-import 'package:turing/core/constants/styles.dart';
+import 'package:turing/core/utils/styles.dart';
 
 final onboardPages = [
   PageModel(

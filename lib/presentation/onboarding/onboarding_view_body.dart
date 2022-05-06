@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_overboard/flutter_overboard.dart';
 import 'package:get/get.dart';
-import 'package:turing/core/constants/styles.dart';
+import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/models/onboard.dart';
 import 'package:turing/presentation/auth/login/login_view.dart';
 

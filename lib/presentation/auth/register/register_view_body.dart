@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:turing/core/constants/styles.dart';
+import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/default_button.dart';
 import 'package:turing/core/widgets/default_text_field.dart';
 import 'package:turing/presentation/auth/login/login_view.dart';
