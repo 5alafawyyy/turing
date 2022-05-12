@@ -4,6 +4,7 @@ import 'package:turing/controllers/drawer_controller.dart';
 import 'package:turing/controllers/home_controller.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/custom_drawer.dart';
+import 'package:turing/presentation/profile/profile_view.dart';
 
 class ControlView extends GetView<DrawerControllerView> {
   ControlView({Key? key}) : super(key: key);
@@ -18,9 +19,9 @@ class ControlView extends GetView<DrawerControllerView> {
             backgroundColor: whiteColor,
             appBar: customAppBar(context, GestureDetector(
               onTap: (){
-               drawerController.openDrawer();
+               Get.toNamed(ProfileView.id);
               },
-              child: Tab(
+              child: const Tab(
                 icon: CircleAvatar(
                   backgroundImage: AssetImage(
                     'assets/images/ahmedkhallaf.jpeg',
@@ -29,7 +30,7 @@ class ControlView extends GetView<DrawerControllerView> {
               ),
             ),),
             key: drawerController.scaffoldKey,
-            drawer: CustomDrawer(),
+            drawer: const CustomDrawer(),
             body: controller.currentScreen,
             bottomNavigationBar: bottomNavigationBar(),
           );
@@ -68,10 +69,16 @@ class ControlView extends GetView<DrawerControllerView> {
 
 
         items:
-        const [
+         const [
+          BottomNavigationBarItem(
+            label: '',
+            icon: Icon(
+              Icons.menu,
+            ),
+          ),
           BottomNavigationBarItem(
             activeIcon: Text(
-              'Home',
+              'Articles',
               style: TextStyle(
                 height: 2.7,
                 fontWeight: FontWeight.bold,
@@ -81,7 +88,7 @@ class ControlView extends GetView<DrawerControllerView> {
             ),
             label: '',
             icon: Icon(
-              Icons.home_outlined,
+              Icons.article_outlined,
             ),
           ),
           BottomNavigationBarItem(
@@ -101,7 +108,7 @@ class ControlView extends GetView<DrawerControllerView> {
           ),
           BottomNavigationBarItem(
             activeIcon: Text(
-              'Articles',
+              'Home',
               style: TextStyle(
                 height: 2.7,
                 fontWeight: FontWeight.bold,
@@ -111,24 +118,10 @@ class ControlView extends GetView<DrawerControllerView> {
             ),
             label: '',
             icon: Icon(
-              Icons.article_outlined,
+              Icons.home_outlined,
             ),
           ),
-          // BottomNavigationBarItem(
-          //   activeIcon: Text(
-          //     'Profile',
-          //     style: TextStyle(
-          //       height: 2.7,
-          //       fontWeight: FontWeight.bold,
-          //       fontSize: 15.0,
-          //       color: itemColor,
-          //     ),
-          //   ),
-          //   label: '',
-          //   icon: Icon(
-          //     Icons.person_outline,
-          //   ),
-          // ),
+
         ],
         currentIndex: controller.navigatorValue,
         onTap: (index) {

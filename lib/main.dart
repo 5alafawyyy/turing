@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
       )
     );
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive );
-
     return GetMaterialApp(
       //initialRoute: 'SplashView',
       initialBinding: Binding(),
