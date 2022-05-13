@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 
-const kMainColor =  Color(0xFFD2B992);
-const kSecondColor = Color(0xFF3E3C3A);
-const darkColor = Color(0xFF95560D);
-const lightColor = Color(0xFFF1E2C8);
+const kPrimaryColor =  Color(0xFF4A707A);
+const kSecondaryColor = Color(0xFF7697A0);
 
-const whiteColor = Color(0xFFF3ECE4);
-const itemColor =  Color(0xFFE09F39);
+const itemColor = Color(0xFF94B0B7);
 
-const evenColor = Color(0xFFEFA361);
-const oddColor = Color(0xFFF3B544);
-const iconColor = Color(0xFFCEB9AD);
-const titleColor = Color(0xFFF3B544);
-const bodyColor = Color(0xFF8D8D8A);
+const kBackgroundColor = Color(0xFFDDDDDA);
+const kForegroundColor = Color(0xFFC2C8C5);
 
-const backgroundColor = Color(0xFFF1ECE7);
-const bodyBackgroundColor = Color(0xFFE5E5E3);
+const kLightColor = Color(0xFFF5F5F3);
+const kBodyColor = Color(0xFFD4D9D8);

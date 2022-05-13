@@ -11,7 +11,7 @@ class HomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: whiteColor,
+      backgroundColor: kBackgroundColor,
       body: Column(
         children: [
           Expanded(
@@ -31,11 +31,11 @@ class HomeViewBody extends StatelessWidget {
                     margin: const EdgeInsets.only(left: 20),
                     child: Row(
                       children: [
-                        TitleText(text: 'Popular'),
+                        TitleText(text: 'Popular', color: kPrimaryColor,),
                         const SizedBox(
                           width: 10,
                         ),
-                        TitleText(text: '.'),
+                        TitleText(text: '.', color: kPrimaryColor,),
                         const SizedBox(
                           width: 10,
                         ),
@@ -44,7 +44,7 @@ class HomeViewBody extends StatelessWidget {
                           child: BodyText(
                             text: 'Communities',
                             size: 15,
-                            textHeight: 2,
+                            textHeight: 2, color: kPrimaryColor,
                           ),
                         )
                       ],

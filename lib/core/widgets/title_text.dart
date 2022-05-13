@@ -9,7 +9,7 @@ class TitleText extends StatelessWidget{
   TitleText(
   {
   Key? key,
-    this.color = kSecondColor,
+    required this.color,
     required this.text,
     this.size = 18,
     this.overflow = TextOverflow.ellipsis,
@@ -23,7 +23,7 @@ class TitleText extends StatelessWidget{
       maxLines: 1,
       style: TextStyle(
         fontSize: size,
-        color: color?.withOpacity(0.65),
+        color: color,
         fontWeight: FontWeight.w600,
       ),
     );
