@@ -34,14 +34,14 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
     return ModalProgressHUD(
       inAsyncCall: isLoading,
       child: Scaffold(
-        backgroundColor: kMainColor,
+        backgroundColor: kBackgroundColor,
         appBar: AppBar(
           title: const Text(''),// You can add title here
           leading:  IconButton(
-            icon:  const Icon(Icons.arrow_back_ios, color: kSecondColor),
+            icon:  const Icon(Icons.arrow_back_ios, color: kPrimaryColor),
             onPressed: () => Get.back(),
           ),
-          backgroundColor: kMainColor, //You can make this transparent
+          backgroundColor: kBackgroundColor, //You can make this transparent
           elevation: 0.0, //No shadow
         ),
         body: Center(
@@ -61,7 +61,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                           style: TextStyle(
                             fontSize: 40.0,
                             fontWeight: FontWeight.bold,
-                            color: kSecondColor,
+                            color: kPrimaryColor,
                           ),
                         ),
                       ],
@@ -83,10 +83,10 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         return null;
                       },
                       labelText: 'User Name',
-                      textFieldColor: kSecondColor,
+                      textFieldColor: kPrimaryColor,
                       prefixIcon: const Icon(
                         Icons.person_outline,
-                        color: kSecondColor,
+                        color: kPrimaryColor,
                       ),
                     ),
                     const SizedBox(
@@ -106,10 +106,10 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         return null;
                       },
                       labelText: 'Email Address',
-                      textFieldColor: kSecondColor,
+                      textFieldColor: kPrimaryColor,
                       prefixIcon: const Icon(
                         Icons.email_outlined,
-                        color: kSecondColor,
+                        color: kPrimaryColor,
                       ),
                     ),
                     const SizedBox(
@@ -132,15 +132,15 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         // return value;
                       },
                       labelText: 'Password',
-                      textFieldColor: kSecondColor,
+                      textFieldColor: kPrimaryColor,
                       prefixIcon: const Icon(
                         Icons.password_outlined,
-                        color: kSecondColor,
+                        color: kPrimaryColor,
                       ),
                       suffixIcon: IconButton(
                         icon:  Icon(
                           isClicked ? Icons.visibility_off_outlined : Icons.visibility,
-                          color: kSecondColor,
+                          color: kPrimaryColor,
                         ),
                         onPressed: ()
                         {
@@ -165,8 +165,8 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                         } else {}
                       },
                       text: 'Sign Up',
-                      textColor: kMainColor,
-                      themeColor: kSecondColor,
+                      textColor: kForegroundColor,
+                      themeColor: kPrimaryColor,
                     ),
                     const SizedBox(
                       height: 40,
@@ -176,7 +176,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       children: [
                         const Text(
                           'Already have an account? ',
-                          style: TextStyle(color: kSecondColor),
+                          style: TextStyle(color: kPrimaryColor),
                         ),
                         TextButton(
                           onPressed: ()
@@ -186,7 +186,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                           child: const Text(
                             'Sign In',
                             style: TextStyle(
-                                color: kSecondColor, fontWeight: FontWeight.bold),
+                                color: kPrimaryColor, fontWeight: FontWeight.bold),
                           ),
                         )
                       ],

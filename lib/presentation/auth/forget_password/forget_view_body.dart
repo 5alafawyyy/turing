@@ -21,14 +21,14 @@ class _ForgetViewBodyState extends State<ForgetViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kMainColor,
+      backgroundColor: kBackgroundColor,
       appBar: AppBar(
         title: const Text(''),// You can add title here
         leading:  IconButton(
-          icon:  const Icon(Icons.arrow_back_ios, color: kSecondColor),
+          icon:  const Icon(Icons.arrow_back_ios, color: kPrimaryColor),
           onPressed: () => Get.back(),
         ),
-        backgroundColor: kMainColor, //You can make this transparent
+        backgroundColor: kBackgroundColor, //You can make this transparent
         elevation: 0.0, //No shadow
       ),
       body: Center(
@@ -41,11 +41,11 @@ class _ForgetViewBodyState extends State<ForgetViewBody> {
               child: Column(
                 children: [
                   const CircleAvatar(
-                    backgroundColor: kSecondColor,
+                    backgroundColor: kPrimaryColor,
                     child: Icon(
                       Icons.lock_outline,
                       size: 40,
-                      color: kMainColor,
+                      color: kBackgroundColor,
                     ),
                     maxRadius: 40,
                   ),
@@ -56,7 +56,7 @@ class _ForgetViewBodyState extends State<ForgetViewBody> {
                     'FORGET',
                     style: TextStyle(
                       fontSize: 35.0,
-                      color: kSecondColor,
+                      color: kPrimaryColor,
                       fontWeight: FontWeight.w600,
                       height: 1.1,
                     ),
@@ -65,7 +65,7 @@ class _ForgetViewBodyState extends State<ForgetViewBody> {
                     'PASSWORD',
                     style: TextStyle(
                       fontSize: 35.0,
-                      color: kSecondColor,
+                      color: kPrimaryColor,
                       fontWeight: FontWeight.w600,
                       height: 1.1,
                     ),
@@ -77,7 +77,7 @@ class _ForgetViewBodyState extends State<ForgetViewBody> {
                     'Provide your account\'s email for which you want to reset your password!',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: kSecondColor,
+                      color: kPrimaryColor,
                     ),
                   ),
                   const SizedBox(
@@ -96,10 +96,10 @@ class _ForgetViewBodyState extends State<ForgetViewBody> {
                       return null;
                     },
                     labelText: 'Email Address',
-                    textFieldColor: kSecondColor,
+                    textFieldColor: kPrimaryColor,
                     prefixIcon: const Icon(
                       Icons.email_outlined,
-                      color: kSecondColor,
+                      color: kPrimaryColor,
                     ),
                   ),
                   const SizedBox(
@@ -115,8 +115,8 @@ class _ForgetViewBodyState extends State<ForgetViewBody> {
                       }else {}
                     },
                     text: 'Send',
-                    textColor: kMainColor,
-                    themeColor: kSecondColor,
+                    textColor: kForegroundColor,
+                    themeColor: kPrimaryColor,
                   ),
                   const SizedBox(
                     height: 80,

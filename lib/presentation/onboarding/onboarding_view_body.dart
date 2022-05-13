@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_overboard/flutter_overboard.dart';
 import 'package:get/get.dart';
 import 'package:turing/core/utils/styles.dart';
-import 'package:turing/core/models/onboard.dart';
+import 'package:turing/data/models/onboard.dart';
 import 'package:turing/presentation/auth/login/login_view.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
@@ -21,9 +21,9 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
         allowScroll: true,
         pages: onboardPages,
         showBullets: true,
-        buttonColor: kSecondColor,
-        inactiveBulletColor: lightColor,
-        activeBulletColor: darkColor,
+        buttonColor: kForegroundColor,
+        inactiveBulletColor: kSecondaryColor,
+        activeBulletColor: kForegroundColor,
         // backgroundProvider: NetworkImage('https://picsum.photos/720/1280'),
         // skipCallback: () {
         //   // ScaffoldMessenger.of(context).showSnackBar(SnackBar(

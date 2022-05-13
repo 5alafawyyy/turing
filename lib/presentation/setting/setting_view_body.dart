@@ -8,10 +8,10 @@ class SettingViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: whiteColor,
+      backgroundColor: kBackgroundColor,
       appBar: AppBar(
         leading:  IconButton(
-          icon:  const Icon(Icons.arrow_back_ios, color: kSecondColor),
+          icon:  const Icon(Icons.arrow_back_ios, color: kPrimaryColor),
           onPressed: () => Get.back(),
         ),
         title: const Text(
@@ -21,9 +21,9 @@ class SettingViewBody extends StatelessWidget {
           ),
         ),
         centerTitle: false,
-        backgroundColor: kMainColor,
-        foregroundColor: kSecondColor,
-        shadowColor: kMainColor,
+        backgroundColor: kBackgroundColor,
+        foregroundColor: kPrimaryColor,
+        shadowColor: kBackgroundColor,
         elevation: 8,
       ),
       body: const Center(
@@ -31,7 +31,7 @@ class SettingViewBody extends StatelessWidget {
           child: Text(
             'Settings',
             style: TextStyle(
-              color: kSecondColor,
+              color: kPrimaryColor,
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
             ),

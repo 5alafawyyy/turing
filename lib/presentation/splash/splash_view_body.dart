@@ -7,12 +7,12 @@ class SplashViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: kSecondColor,
+      backgroundColor: kPrimaryColor,
       body: Center(
         child: Text(
           'Turing',
           style: TextStyle(
-              color: kMainColor,
+              color: kBackgroundColor,
               fontSize: 50
           ),
         ),

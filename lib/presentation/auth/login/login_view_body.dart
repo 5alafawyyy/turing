@@ -31,7 +31,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     return ModalProgressHUD(
       inAsyncCall: false,
       child: Scaffold(
-        backgroundColor: kMainColor,
+        backgroundColor: kBackgroundColor,
         //appBar: AppBar(),
         body: Center(
           child: SingleChildScrollView(
@@ -46,11 +46,11 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       height: 60.0,
                     ),
                     const CircleAvatar(
-                      backgroundColor: kSecondColor,
+                      backgroundColor: kPrimaryColor,
                       child: Icon(
                         Icons.person_outline,
                         size: 40,
-                        color: kMainColor,
+                        color: kBackgroundColor,
                       ),
                       maxRadius: 40,
                     ),
@@ -61,7 +61,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       'Welcome',
                       style: TextStyle(
                         fontSize: 35.0,
-                        color: kSecondColor,
+                        color: kPrimaryColor,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -82,10 +82,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         return null;
                       },
                       labelText: 'Email Address',
-                      textFieldColor: kSecondColor,
+                      textFieldColor: kPrimaryColor,
                       prefixIcon: const Icon(
                         Icons.email_outlined,
-                        color: kSecondColor,
+                        color: kPrimaryColor,
                       ),
                     ),
                     const SizedBox(
@@ -107,15 +107,15 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                         // return null;
                       },
                       labelText: 'Password',
-                      textFieldColor: kSecondColor,
+                      textFieldColor: kPrimaryColor,
                       prefixIcon: const Icon(
                         Icons.password_outlined,
-                        color: kSecondColor,
+                        color: kPrimaryColor,
                       ),
                       suffixIcon: IconButton(
                         icon:  Icon(
                           isClicked ? Icons.visibility_off_outlined : Icons.visibility,
-                          color: kSecondColor,
+                          color: kPrimaryColor,
                         ),
                         onPressed: ()
                         {
@@ -140,8 +140,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       }else {}
                       },
                       text: 'Sign In',
-                      textColor: kMainColor,
-                      themeColor: kSecondColor,
+                      textColor: kForegroundColor,
+                      themeColor: kPrimaryColor,
                     ),
                     const SizedBox(
                       height: 10,
@@ -156,7 +156,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                           child: const Text(
                             'Forget Password? ',
                             style: TextStyle(
-                                color: kSecondColor,
+                                color: kPrimaryColor,
                                 fontWeight: FontWeight.bold),
                           ),
                         )
@@ -169,7 +169,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                               child: Container(
                                   margin: const EdgeInsets.only(left: 10.0, right: 10.0),
                                   child: const Divider(
-                                    color: kSecondColor,
+                                    color: kPrimaryColor,
                                     height: 40,
                                   ),
                               ),
@@ -178,14 +178,14 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                             'or',
                             style: TextStyle(
                               fontSize: 20.0,
-                              color: kSecondColor
+                              color: kPrimaryColor
                             ),
                           ),
                           Expanded(
                             child: Container(
                               margin: const EdgeInsets.only(left: 10.0, right: 10.0),
                               child: const Divider(
-                                color: kSecondColor,
+                                color: kPrimaryColor,
                                 height: 40,
                               ),
                             ),
@@ -197,7 +197,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                       children: [
                         const Text(
                           'Don\'t have an account? ',
-                          style: TextStyle(color: kSecondColor),
+                          style: TextStyle(color: kPrimaryColor),
                         ),
                         TextButton(
                           onPressed: () {
@@ -206,7 +206,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                           child: const Text(
                             'Sign Up',
                             style: TextStyle(
-                                color: kSecondColor,
+                                color: kPrimaryColor,
                                 fontWeight: FontWeight.bold),
                           ),
                         )

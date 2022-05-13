@@ -24,11 +24,12 @@ class GroupsList extends StatelessWidget {
                 height: 120,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: lightColor,
+                    color: kForegroundColor,
                     image: const DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage('assets/images/maths.jpg'),
-                    )),
+                      image: AssetImage('assets/images/problem-solving.jpg'),
+                    ),
+                ),
               ),
 
               // Text Container
@@ -39,7 +40,8 @@ class GroupsList extends StatelessWidget {
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(20),
                           bottomRight: Radius.circular(20)),
-                      color: bodyBackgroundColor),
+                      color: kBodyColor,
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: Column(
@@ -48,13 +50,14 @@ class GroupsList extends StatelessWidget {
                       children: [
                         TitleText(
                           text: 'Problem Solving Community',
+                          color: kPrimaryColor,
                         ),
                         const SizedBox(
                           height: 5,
                         ),
                         BodyText(
                           text: 'Students of FEE 53 graduation project',
-                          maxLines: 1,
+                          maxLines: 1, color: kPrimaryColor,
                         ),
                         const SizedBox(
                           height: 5,
@@ -65,10 +68,10 @@ class GroupsList extends StatelessWidget {
                             IconAndText(
                               icon: Icons.people_alt_outlined,
                               iconSize: 20,
-                              iconColor: iconColor,
+                              iconColor: kPrimaryColor,
                               text: '650',
                               textSize: 14,
-                              color: bodyColor,
+                              color: kPrimaryColor,
                             ),
                             SizedBox(
                               width: 10,
@@ -76,10 +79,10 @@ class GroupsList extends StatelessWidget {
                             IconAndText(
                               icon: Icons.add_comment_outlined,
                               iconSize: 20,
-                              iconColor: iconColor,
+                              iconColor: kPrimaryColor,
                               text: '1.2K',
                               textSize: 14,
-                              color: bodyColor,
+                              color: kPrimaryColor,
                             ),
                             SizedBox(
                               width: 10,
@@ -87,10 +90,10 @@ class GroupsList extends StatelessWidget {
                             IconAndText(
                               icon: Icons.arrow_circle_up_outlined,
                               iconSize: 20,
-                              iconColor: iconColor,
+                              iconColor: kPrimaryColor,
                               text: '12K',
                               textSize: 14,
-                              color: bodyColor,
+                              color: kPrimaryColor,
                             ),
                           ],
                         ),

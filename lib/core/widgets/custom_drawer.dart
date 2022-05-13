@@ -12,7 +12,7 @@ class CustomDrawer extends StatelessWidget{
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: whiteColor,
+        color: kBackgroundColor,
         child: ListView(
           children:
           [
@@ -23,8 +23,8 @@ class CustomDrawer extends StatelessWidget{
             buildDrawerItem(
                 text: 'Profile',
                 icon: Icons.person_outline,
-                textIconColor: kSecondColor,
-                tileColor: kSecondColor,
+                textIconColor: kPrimaryColor,
+                tileColor: kSecondaryColor,
                 onTap: (){
                   Get.toNamed(ProfileView.id);
                 },
@@ -32,8 +32,8 @@ class CustomDrawer extends StatelessWidget{
             buildDrawerItem(
               text: 'Settings',
               icon: Icons.settings_outlined,
-              textIconColor: kSecondColor,
-              tileColor: kSecondColor,
+              textIconColor: kPrimaryColor,
+              tileColor: kSecondaryColor,
               onTap: () {
                 Get.toNamed(SettingView.id);
               },
@@ -41,8 +41,8 @@ class CustomDrawer extends StatelessWidget{
             buildDrawerItem(
                 text: 'Logout',
                 icon: Icons.close,
-                textIconColor: kSecondColor,
-                tileColor: kSecondColor,
+                textIconColor: kPrimaryColor,
+                tileColor: kSecondaryColor,
                 onTap: () {
                   Get.offAllNamed(LoginView.id);
                   },
@@ -57,19 +57,19 @@ class CustomDrawer extends StatelessWidget{
   buildDrawerHeader() {
     return const UserAccountsDrawerHeader(
       decoration: BoxDecoration(
-        color: kMainColor,
+        color: kPrimaryColor,
       ),
       accountName: Text(
           'Ahmed Khallaf',
         style: TextStyle(
           fontWeight: FontWeight.bold,
-          color: kSecondColor
+          color: kForegroundColor,
         ),
       ),
       accountEmail: Text(
         'ahmedkhallaf2098@gmail.com',
         style: TextStyle(
-            color: kSecondColor,
+            color: kForegroundColor,
         ),
       ),
       currentAccountPicture: CircleAvatar(
@@ -79,11 +79,11 @@ class CustomDrawer extends StatelessWidget{
       otherAccountsPictures: 
       [
         CircleAvatar(
-          backgroundColor: kSecondColor,
+          backgroundColor: kForegroundColor,
           child: Text(
             'AK',
             style: TextStyle(
-              color: kMainColor
+              color: kPrimaryColor
             ),),
         ),
       ],

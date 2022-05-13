@@ -11,7 +11,7 @@ class BodyText extends StatelessWidget{
   BodyText(
       {
         Key? key,
-        this.color = kSecondColor,
+        required this.color,
         required this.text,
         this.size = 12,
         this.overflow = TextOverflow.ellipsis,
@@ -28,7 +28,7 @@ class BodyText extends StatelessWidget{
       style: TextStyle(
         height: textHeight,
         fontSize: size,
-        color: color?.withOpacity(0.6),
+        color: color,
       ),
     );
   }

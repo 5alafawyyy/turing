@@ -16,7 +16,7 @@ class ControlView extends GetView<DrawerControllerView> {
     return GetBuilder<HomeController>(
         builder: (controller) {
           return Scaffold(
-            backgroundColor: whiteColor,
+            backgroundColor: kBackgroundColor,
             appBar: customAppBar(context, GestureDetector(
               onTap: (){
                Get.toNamed(ProfileView.id);
@@ -59,11 +59,11 @@ class ControlView extends GetView<DrawerControllerView> {
     return GetBuilder<HomeController>(
       init: HomeController(),
       builder:(controller) => BottomNavigationBar(
-        backgroundColor: whiteColor,
+        backgroundColor: kBackgroundColor,
         showSelectedLabels: true,
         showUnselectedLabels: false,
-        selectedItemColor: itemColor,
-        unselectedItemColor: kSecondColor,
+        selectedItemColor: kPrimaryColor,
+        unselectedItemColor: kPrimaryColor,
         type: BottomNavigationBarType.fixed,
         elevation: 10,
 
@@ -83,7 +83,7 @@ class ControlView extends GetView<DrawerControllerView> {
                 height: 2.7,
                 fontWeight: FontWeight.bold,
                 fontSize: 15.0,
-                color: itemColor,
+                color: kPrimaryColor,
               ),
             ),
             label: '',
@@ -98,7 +98,7 @@ class ControlView extends GetView<DrawerControllerView> {
                 height: 2.7,
                 fontWeight: FontWeight.bold,
                 fontSize: 15.0,
-                color: itemColor,
+                color: kPrimaryColor,
               ),
             ),
             label: '',
@@ -113,7 +113,7 @@ class ControlView extends GetView<DrawerControllerView> {
                 height: 2.7,
                 fontWeight: FontWeight.bold,
                 fontSize: 15.0,
-                color: itemColor,
+                color: kPrimaryColor,
               ),
             ),
             label: '',
@@ -147,8 +147,8 @@ class CustomSearchDelegate extends SearchDelegate{
     final ColorScheme colorScheme = theme.colorScheme;
     return theme.copyWith(
       appBarTheme: AppBarTheme(
-        backgroundColor: colorScheme.brightness == Brightness.dark ? kSecondColor : kMainColor,
-        iconTheme: theme.primaryIconTheme.copyWith(color: kSecondColor),
+        backgroundColor: colorScheme.brightness == Brightness.dark ? kSecondaryColor : kPrimaryColor,
+        iconTheme: theme.primaryIconTheme.copyWith(color: kPrimaryColor),
       ),
       inputDecorationTheme: searchFieldDecorationTheme ??
           InputDecorationTheme(
@@ -167,7 +167,7 @@ class CustomSearchDelegate extends SearchDelegate{
         },
         icon: const Icon(
           Icons.clear,
-          color: kSecondColor,
+          color: kPrimaryColor,
         ),
       ),
     ];
@@ -181,7 +181,7 @@ class CustomSearchDelegate extends SearchDelegate{
       },
       icon: const Icon(
         Icons.arrow_back_ios,
-        color: kSecondColor,
+        color: kPrimaryColor,
       ),
     );
   }
@@ -203,7 +203,7 @@ class CustomSearchDelegate extends SearchDelegate{
           title: Text(
             result,
             style: const TextStyle(
-              color: kSecondColor,
+              color: kPrimaryColor,
             ),
           ),
         );
@@ -237,9 +237,9 @@ class CustomSearchDelegate extends SearchDelegate{
 
 customAppBar( context, leading) {
   return AppBar(
-    backgroundColor: whiteColor,
-    foregroundColor: kSecondColor,
-    shadowColor: kMainColor,
+    backgroundColor: kBackgroundColor,
+    foregroundColor: kPrimaryColor,
+    shadowColor: kBackgroundColor,
     elevation: 0,
     leading: leading,
     // IconButton(

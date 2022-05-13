@@ -60,8 +60,8 @@ class _RoomsSliderState extends State<RoomsSlider> {
               activeShape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0),
               ),
-              activeColor: itemColor,
-              color: kMainColor),
+              activeColor: kPrimaryColor,
+              color: itemColor),
         ),
       ],
     );
@@ -105,7 +105,7 @@ class _RoomsSliderState extends State<RoomsSlider> {
             ),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
-                color: index.isEven ? evenColor : oddColor,
+                color: index.isEven ? kBackgroundColor : kForegroundColor,
                 image: const DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage('assets/images/programming.jpg'),
@@ -118,7 +118,7 @@ class _RoomsSliderState extends State<RoomsSlider> {
               margin: const EdgeInsets.only(left: 30, right: 30, bottom: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
-                color: backgroundColor,
+                color: kBackgroundColor,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.2),
@@ -127,11 +127,11 @@ class _RoomsSliderState extends State<RoomsSlider> {
                     offset: const Offset(0, 5), // changes position of shadow
                   ),
                   const BoxShadow(
-                    color: backgroundColor,
+                    color: kBackgroundColor,
                     offset: Offset(-5, 0), // changes position of shadow
                   ),
                   const BoxShadow(
-                    color: backgroundColor,
+                    color: kBackgroundColor,
                     offset: Offset(5, 0), // changes position of shadow
                   ),
                 ],
@@ -148,6 +148,7 @@ class _RoomsSliderState extends State<RoomsSlider> {
                   children: [
                     TitleText(
                       text: 'Programming',
+                      color: kPrimaryColor,
                     ),
                     const SizedBox(
                       height: 10,
@@ -155,31 +156,32 @@ class _RoomsSliderState extends State<RoomsSlider> {
                     BodyText(
                       text:
                           'The new of Flutter version will be discussed, anyone know about can tell us',
+                      color: kPrimaryColor.withOpacity(0.8),
                     ),
                     const SizedBox(
                       height: 8,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: const [
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children:  [
                         IconAndText(
                           icon: Icons.people_alt_outlined,
                           iconSize: 20,
-                          iconColor: iconColor,
+                          iconColor: kPrimaryColor.withOpacity(0.8),
                           text: '155',
                           textSize: 14,
-                          color: bodyColor,
+                          color: kPrimaryColor.withOpacity(0.8),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         IconAndText(
                           icon: Icons.watch_later_outlined,
                           iconSize: 20,
-                          iconColor: iconColor,
+                          iconColor: kPrimaryColor.withOpacity(0.8),
                           text: '32min',
                           textSize: 14,
-                          color: bodyColor,
+                          color: kPrimaryColor.withOpacity(0.8),
                         ),
                       ],
                     ),

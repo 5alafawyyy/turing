@@ -7,7 +7,7 @@ class ArticlesViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: whiteColor,
+      backgroundColor: kBackgroundColor,
 
     );
   }

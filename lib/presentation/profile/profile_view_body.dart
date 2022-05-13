@@ -9,10 +9,10 @@ class ProfileViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: whiteColor,
+      backgroundColor: kBackgroundColor,
       appBar: AppBar(
         leading:  IconButton(
-          icon:  const Icon(Icons.arrow_back_ios, color: kSecondColor),
+          icon:  const Icon(Icons.arrow_back_ios, color: kPrimaryColor),
           onPressed: () => Get.back(),
         ),
         title: const Text(
@@ -22,23 +22,23 @@ class ProfileViewBody extends StatelessWidget {
         ),
         ),
         centerTitle: false,
-        backgroundColor: kMainColor,
-        foregroundColor: kSecondColor,
-        shadowColor: kMainColor,
+        backgroundColor: kBackgroundColor,
+        foregroundColor: kPrimaryColor,
+        shadowColor: kBackgroundColor,
         elevation: 8,
       ),
       body: Center(
         child: MaterialButton(
           onPressed: () { Get.offAllNamed(LoginView.id); },
-          child: Text(
+          child: const Text(
             'Logout',
             style: TextStyle(
-              color: kSecondColor,
+              color: kBackgroundColor,
               fontSize: 20.0,
               fontWeight: FontWeight.bold,
             ),
           ),
-          color: lightColor,
+          color: kPrimaryColor,
         ),
       ),
     );
