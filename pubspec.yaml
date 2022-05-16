@@ -40,6 +40,7 @@ dependencies:
   flutter_overboard: ^3.1.1
   modal_progress_hud_nsn: ^0.1.0-nullsafety-1
   dots_indicator: ^2.1.0
+  image_picker: ^0.8.5+3
 
 dev_dependencies:
   flutter_test:
@@ -95,3 +96,4 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
     - assets/images/
+    - assets/icons/

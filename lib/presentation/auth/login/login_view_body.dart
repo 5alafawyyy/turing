@@ -35,6 +35,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         //appBar: AppBar(),
         body: Center(
           child: SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             physics: const BouncingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.all(10.0),

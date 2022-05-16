@@ -5,13 +5,14 @@ Widget DefaultButton({
   required String text,
   required Color textColor,
   required Color themeColor,
+  double width = double.infinity,
 }) =>
     MaterialButton(
       onPressed: () {
         onPressed();
       },
       elevation: 5.0,
-      minWidth: double.infinity,
+      minWidth: width,
       height: 45,
       child: Text(
         text,

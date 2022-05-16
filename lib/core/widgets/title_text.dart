@@ -5,6 +5,7 @@ class TitleText extends StatelessWidget{
   Color? color;
   final String text;
   double size;
+  int maxLine;
   TextOverflow overflow;
   TitleText(
   {
@@ -12,6 +13,7 @@ class TitleText extends StatelessWidget{
     required this.color,
     required this.text,
     this.size = 18,
+    this.maxLine = 1,
     this.overflow = TextOverflow.ellipsis,
   }) : super(key: key);
 
@@ -20,7 +22,7 @@ class TitleText extends StatelessWidget{
     return Text(
       text,
       overflow: overflow,
-      maxLines: 1,
+      maxLines: maxLine,
       style: TextStyle(
         fontSize: size,
         color: color,

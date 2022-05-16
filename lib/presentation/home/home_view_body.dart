@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/body_text.dart';
 import 'package:turing/core/widgets/title_text.dart';
-import 'package:turing/presentation/home/groups_list.dart';
-import 'package:turing/presentation/home/rooms_slider.dart';
+import 'package:turing/presentation/communities/screens/communities_view/communities_view.dart';
+import 'package:turing/presentation/communities/screens/communities_view/widgets/communities_list.dart';
+import 'package:turing/presentation/rooms/widgets/rooms_slider.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({Key? key}) : super(key: key);
@@ -41,10 +43,15 @@ class HomeViewBody extends StatelessWidget {
                         ),
                         Container(
                           margin: const EdgeInsets.only(bottom: 2),
-                          child: BodyText(
-                            text: 'Communities',
-                            size: 15,
-                            textHeight: 2, color: kPrimaryColor,
+                          child: GestureDetector(
+                            onTap: (){
+                              Get.toNamed(CommunitiesView.id);
+                            },
+                            child: BodyText(
+                              text: 'Communities',
+                              size: 15,
+                              textHeight: 2, color: kPrimaryColor,
+                            ),
                           ),
                         )
                       ],
@@ -54,7 +61,7 @@ class HomeViewBody extends StatelessWidget {
                     height: 15,
                   ),
                   // Groups List
-                  const GroupsList(),
+                  const CommunitiesList(),
                 ],
               ),
             ),

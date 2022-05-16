@@ -17,7 +17,9 @@ class ControlView extends GetView<DrawerControllerView> {
         builder: (controller) {
           return Scaffold(
             backgroundColor: kBackgroundColor,
-            appBar: customAppBar(context, GestureDetector(
+            appBar: customAppBar(
+              context,
+              GestureDetector(
               onTap: (){
                Get.toNamed(ProfileView.id);
               },
@@ -28,7 +30,8 @@ class ControlView extends GetView<DrawerControllerView> {
                   ),
                 ),
               ),
-            ),),
+            ),
+            ),
             key: drawerController.scaffoldKey,
             drawer: const CustomDrawer(),
             body: controller.currentScreen,
@@ -36,7 +39,6 @@ class ControlView extends GetView<DrawerControllerView> {
           );
         }
     );
-
 
     //   Obx((){
     //   return (Get.find<AuthController>().user != null)
@@ -62,11 +64,10 @@ class ControlView extends GetView<DrawerControllerView> {
         backgroundColor: kBackgroundColor,
         showSelectedLabels: true,
         showUnselectedLabels: false,
-        selectedItemColor: kPrimaryColor,
+        selectedItemColor: itemColor,
         unselectedItemColor: kPrimaryColor,
         type: BottomNavigationBarType.fixed,
         elevation: 10,
-
 
         items:
          const [
@@ -121,12 +122,10 @@ class ControlView extends GetView<DrawerControllerView> {
               Icons.home_outlined,
             ),
           ),
-
         ],
         currentIndex: controller.navigatorValue,
         onTap: (index) {
           controller.changeSelectedValue(index);
-
         },
       ),
     );
@@ -147,7 +146,7 @@ class CustomSearchDelegate extends SearchDelegate{
     final ColorScheme colorScheme = theme.colorScheme;
     return theme.copyWith(
       appBarTheme: AppBarTheme(
-        backgroundColor: colorScheme.brightness == Brightness.dark ? kSecondaryColor : kPrimaryColor,
+        backgroundColor: colorScheme.brightness == Brightness.dark ? kPrimaryColor : kForegroundColor,
         iconTheme: theme.primaryIconTheme.copyWith(color: kPrimaryColor),
       ),
       inputDecorationTheme: searchFieldDecorationTheme ??
