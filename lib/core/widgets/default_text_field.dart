@@ -36,8 +36,8 @@ Widget DefaultTextField({
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(4),
+          borderRadius: const BorderRadius.all(
+             Radius.circular(4),
           ),
           borderSide: BorderSide(
             width: 1,
@@ -45,15 +45,15 @@ Widget DefaultTextField({
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(4),
+          borderRadius: const BorderRadius.all(
+             Radius.circular(4),
           ),
           borderSide: BorderSide(
             width: 1,
             color: textFieldColor,
           ),
         ),
-        errorBorder: OutlineInputBorder(
+        errorBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(4),
           ),

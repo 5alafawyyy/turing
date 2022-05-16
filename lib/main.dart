@@ -3,17 +3,22 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:turing/controllers/control_view.dart';
+import 'package:turing/core/utils/styles.dart';
 import 'package:turing/data/helper/binding.dart';
 import 'package:turing/presentation/articles/articles_view.dart';
 import 'package:turing/presentation/auth/forget_password/forget_view.dart';
 import 'package:turing/presentation/auth/login/login_view.dart';
 import 'package:turing/presentation/auth/register/register_view.dart';
+import 'package:turing/presentation/communities/screens/communities_view/communities_view.dart';
+import 'package:turing/presentation/communities/screens/community_details/community_details_view.dart';
 import 'package:turing/presentation/home/home_view.dart';
 import 'package:turing/presentation/onboarding/obboarding_view.dart';
 import 'package:turing/presentation/profile/profile_view.dart';
 import 'package:turing/presentation/rooms/rooms_view.dart';
 import 'package:turing/presentation/setting/setting_view.dart';
 import 'package:turing/presentation/splash/splash_view.dart';
+
+import 'presentation/communities/screens/create_community/create_new_community_view.dart';
 
 void main() {
   //WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
-        statusBarColor: Colors.black
+        statusBarColor: kPrimaryColor
       )
     );
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive );
@@ -45,18 +50,32 @@ class MyApp extends StatelessWidget {
         GetPage(name: ArticlesView.id, page: ()=> const ArticlesView()),
         GetPage(name: ProfileView.id, page: ()=> const ProfileView()),
         GetPage(name: SettingView.id, page: ()=> const SettingView()),
+        GetPage(name: CommunitiesView.id, page: ()=> const CommunitiesView()),
+        GetPage(name: CommunityPageDetailsView.id, page: ()=>  const CommunityPageDetailsView()),
+        GetPage(name: CreateCommunityView.id, page: ()=>  const CreateCommunityView()),
+
       ],
 
       title: 'Turing Application',
       debugShowCheckedModeBanner: false, // Remove Banner of Debug
       theme: ThemeData(
         brightness: Brightness.light,
-        primaryColor: Colors.lightBlue[800],
-        fontFamily: 'Georgia',
+        primaryColor: kPrimaryColor,
+        fontFamily: 'Poppins',
+        backgroundColor: kBackgroundColor,
 
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: GoogleFonts.poppinsTextTheme(),
-
+        appBarTheme: const AppBarTheme(
+          backgroundColor: kBackgroundColor,
+          toolbarTextStyle: TextStyle(
+            fontFamily: 'Poppins'
+          ),
+          iconTheme: IconThemeData(
+            color: kPrimaryColor,
+          ),
+          foregroundColor: kPrimaryColor,
+        ),
       ),
       //home: SplashView(),
     );

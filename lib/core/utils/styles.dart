@@ -8,5 +8,5 @@ const itemColor = Color(0xFF94B0B7);
 const kBackgroundColor = Color(0xFFDDDDDA);
 const kForegroundColor = Color(0xFFC2C8C5);
 
-const kLightColor = Color(0xFFF5F5F3);
+const kLightColor = Color(0xFFE9E9E2);
 const kBodyColor = Color(0xFFD4D9D8);

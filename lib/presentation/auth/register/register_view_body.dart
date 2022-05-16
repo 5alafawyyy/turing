@@ -4,7 +4,6 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/default_button.dart';
 import 'package:turing/core/widgets/default_text_field.dart';
-import 'package:turing/presentation/auth/login/login_view.dart';
 
 class RegisterViewBody extends StatefulWidget {
   const RegisterViewBody({Key? key}) : super(key: key);
@@ -46,6 +45,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
         ),
         body: Center(
           child: SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             physics: const BouncingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
