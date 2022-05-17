@@ -45,7 +45,11 @@ class HomeViewBody extends StatelessWidget {
                           margin: const EdgeInsets.only(bottom: 2),
                           child: GestureDetector(
                             onTap: (){
-                              Get.toNamed(CommunitiesView.id);
+                              Get.to(() => const CommunitiesView(),
+                                duration: const Duration(milliseconds: 1000),
+                                transition: Transition.rightToLeft,
+
+                              );
                             },
                             child: BodyText(
                               text: 'Communities',
