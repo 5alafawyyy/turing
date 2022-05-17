@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/default_button.dart';
-import 'package:turing/core/widgets/title_text.dart';
 import 'package:turing/presentation/communities/screens/create_community/controllers/create_new_community_controller.dart';
-import 'package:turing/presentation/communities/screens/create_community/widgets/custom_text_form_field.dart';
+import 'package:turing/core/widgets/custom_text_form_field.dart';
 import 'package:turing/presentation/communities/screens/create_community/widgets/pick_image.dart';
 
 class CreateCommunityViewBody extends StatelessWidget {

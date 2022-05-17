@@ -15,7 +15,7 @@ class CommunityDetailsController extends GetxController {
 
   bool joined = false;
   void join(){
-    joined = true;
+    joined = !joined;
     update();
   }
 

@@ -30,21 +30,26 @@ class CommunitiesViewBody extends StatelessWidget {
         backGroundColor: kForegroundColor,
         bodyWidget: communitiesItem(
           onTap: () {
-            Get.toNamed(CommunityPageDetailsView.id, arguments: {
-              'imgUrl': 'assets/images/problem-solving.jpg',
-              'titleText': 'Problem Solving Community',
-              'description': 'Problem solving is the act of defining and'
-                  ' determining the cause of  identifying,'
-                  ' prioritizing, and selecting alternatives for a solution'
-                  ' and implementing a solution. Problem solving is the act of defining a problem'
-                  ' determining the cause of the problem; identifying,'
-                  ' prioritizing, and selecting alternatives for a solution;'
-                  ' and implementing a solution.and selecting alternatives for a solution;'
-                  ' Problem solving is the act of defining a '
-                  ' determining the cause of the problem; identifying,'
-                  ' prioritizing, and selecting alternatives for a solution;'
-                  ' and implementing a solution.',
-            });
+
+            Get.to(() => const CommunityPageDetailsView(),
+              arguments: {
+                  'imgUrl': 'assets/images/problem-solving.jpg',
+                  'titleText': 'Problem Solving Community',
+                  'description': 'Problem solving is the act of defining and'
+                      ' determining the cause of  identifying,'
+                      ' prioritizing, and selecting alternatives for a solution'
+                      ' and implementing a solution. Problem solving is the act of defining a problem'
+                      ' determining the cause of the problem; identifying,'
+                      ' prioritizing, and selecting alternatives for a solution;'
+                      ' and implementing a solution.and selecting alternatives for a solution;'
+                      ' Problem solving is the act of defining a '
+                      ' determining the cause of the problem; identifying,'
+                      ' prioritizing, and selecting alternatives for a solution;'
+                      ' and implementing a solution.',
+                },
+              duration: const Duration(milliseconds: 500),
+              transition: Transition.downToUp,
+            );
           },
           imgUrl: 'assets/images/problem-solving.jpg',
           titleText: 'Problem Solving Community',
@@ -74,7 +79,11 @@ class CommunitiesViewBody extends StatelessWidget {
         backgroundColor: kPrimaryColor,
         foregroundColor: kBackgroundColor,
         onPressed: () {
-          Get.toNamed(CreateCommunityView.id);
+          Get.to(() => const CreateCommunityView(),
+            duration: const Duration(milliseconds: 1000),
+            transition: Transition.circularReveal,
+
+          );
         },
       ),
 

@@ -50,8 +50,6 @@ Widget createNewPost (){
                         backgroundColor: kPrimaryColor,
                         colorText: kForegroundColor,
                       );
-
-
                     },
                     icon: const ImageIcon(
                       AssetImage('assets/icons/send.png'),
