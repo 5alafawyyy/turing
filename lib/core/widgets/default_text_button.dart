@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 Widget defaultTextButton({
   required Function function,
   required String text,
-  TextStyle? isBold,
+  TextStyle? style,
 }) =>
     TextButton(
       onPressed: () {
@@ -11,6 +11,6 @@ Widget defaultTextButton({
       },
       child: Text(
         text.toUpperCase(),
-        style: isBold,
+        style: style,
       ),
     );

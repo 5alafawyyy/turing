@@ -15,7 +15,9 @@ import 'package:turing/presentation/communities/screens/communities_view/communi
 import 'package:turing/presentation/communities/screens/community_details/community_details_view.dart';
 import 'package:turing/presentation/home/home_view.dart';
 import 'package:turing/presentation/onboarding/obboarding_view.dart';
-import 'package:turing/presentation/profile/profile_view.dart';
+import 'package:turing/presentation/profile/screens/edit_profile/edit_profile.dart';
+import 'package:turing/presentation/profile/screens/notification/notification.dart';
+import 'package:turing/presentation/profile/screens/view/profile_view.dart';
 import 'package:turing/presentation/rooms/rooms_view.dart';
 import 'package:turing/presentation/setting/setting_view.dart';
 import 'package:turing/presentation/splash/splash_view.dart';
@@ -36,7 +38,8 @@ class MyApp extends StatelessWidget {
         statusBarColor: kPrimaryColor
       )
     );
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive );
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky );
+
     return GetMaterialApp(
       //initialRoute: 'SplashView',
       initialBinding: Binding(),
@@ -57,6 +60,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: CreateCommunityView.id, page: ()=>   CreateCommunityView()),
         GetPage(name: ArticleDetailsView.id, page: ()=>   ArticleDetailsView()),
         GetPage(name: CreateNewArticleView.id, page: ()=>    CreateNewArticleView()),
+        GetPage(name: EditProfileView.id, page: () => EditProfileView()),
+        GetPage(name: NotificationsView.id, page: () => NotificationsView())
 
       ],
 

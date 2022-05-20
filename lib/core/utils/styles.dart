@@ -10,3 +10,5 @@ const kForegroundColor = Color(0xFFC2C8C5);
 
 const kLightColor = Color(0xFFE9E9E2);
 const kBodyColor = Color(0xFFD4D9D8);
+
+const kWhiteColor = Color(0xFFF3F3F3);

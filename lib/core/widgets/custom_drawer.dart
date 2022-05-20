@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/presentation/auth/login/login_view.dart';
-import 'package:turing/presentation/profile/profile_view.dart';
+import 'package:turing/presentation/profile/screens/view/profile_view.dart';
 import 'package:turing/presentation/setting/setting_view.dart';
 
 class CustomDrawer extends StatelessWidget{

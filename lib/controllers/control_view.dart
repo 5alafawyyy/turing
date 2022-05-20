@@ -4,7 +4,7 @@ import 'package:turing/controllers/drawer_controller.dart';
 import 'package:turing/controllers/home_controller.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/custom_drawer.dart';
-import 'package:turing/presentation/profile/profile_view.dart';
+import 'package:turing/presentation/profile/screens/view/profile_view.dart';
 
 class ControlView extends GetView<DrawerControllerView> {
   ControlView({Key? key}) : super(key: key);
