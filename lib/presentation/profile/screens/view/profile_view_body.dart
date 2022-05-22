@@ -5,6 +5,7 @@ import 'package:turing/presentation/profile/screens/edit_profile/edit_profile.da
 import 'package:turing/presentation/profile/screens/notification/notification.dart';
 import 'package:turing/presentation/profile/widgets/profile_menu.dart';
 import 'package:turing/presentation/profile/widgets/profile_pic.dart';
+import 'package:turing/presentation/setting/setting_view.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({Key? key}) : super(key: key);
@@ -43,7 +44,9 @@ class ProfileViewBody extends StatelessWidget {
             text: "Settings",
             icon: "assets/icons/settings.png",
             onPressed: () {
-
+              Get.to(() => const SettingView(),
+                transition: Transition.leftToRight,
+              );
             },
           ),
           ProfileMenu(

@@ -3,14 +3,14 @@ import 'package:get/get.dart';
 import 'package:turing/controllers/drawer_controller.dart';
 import 'package:turing/controllers/home_controller.dart';
 import 'package:turing/core/utils/styles.dart';
-import 'package:turing/core/widgets/custom_drawer.dart';
+import 'package:turing/presentation/drawer/drawer.dart';
 import 'package:turing/presentation/profile/screens/view/profile_view.dart';
 
 class ControlView extends GetView<DrawerControllerView> {
   ControlView({Key? key}) : super(key: key);
   static String id = '/controlView';
 
-  var drawerController =  Get.put(DrawerControllerView());
+  final drawerController =  Get.put(DrawerControllerView());
   @override
   Widget build(BuildContext context){
     return GetBuilder<HomeController>(
@@ -21,7 +21,10 @@ class ControlView extends GetView<DrawerControllerView> {
               context,
               GestureDetector(
               onTap: (){
-               Get.toNamed(ProfileView.id);
+                Get.to(() => const ProfileView(),
+                  transition: Transition.rightToLeftWithFade,
+                  duration: const Duration(milliseconds: 250),
+                );
               },
               child: const Tab(
                 icon: CircleAvatar(
@@ -33,28 +36,13 @@ class ControlView extends GetView<DrawerControllerView> {
             ),
             ),
             key: drawerController.scaffoldKey,
-            drawer: const CustomDrawer(),
+            drawer: const MyDrawer(),
             body: controller.currentScreen,
             bottomNavigationBar: bottomNavigationBar(),
           );
         }
     );
 
-    //   Obx((){
-    //   return (Get.find<AuthController>().user != null)
-    //       ? const LoginView()
-    //       :
-    //   GetBuilder<HomeController>(
-    //       builder: (controller) {
-    //         return Scaffold(
-    //
-    //           body: controller.currentScreen,
-    //           bottomNavigationBar: bottomNavigationBar(),
-    //         );
-    //       }
-    //       );
-    // },
-    // );
   }
 
   Widget bottomNavigationBar() {

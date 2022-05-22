@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:turing/core/utils/data.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/presentation/auth/login/login_view.dart';
+import 'package:turing/presentation/communities/screens/communities_view/communities_view.dart';
+import 'package:turing/presentation/profile/screens/profile_page/profile_page.dart';
 import 'package:turing/presentation/profile/screens/view/profile_view.dart';
 import 'package:turing/presentation/setting/setting_view.dart';
 
-class CustomDrawer extends StatelessWidget{
-   const CustomDrawer({Key? key}) : super(key: key);
+class MyDrawer extends StatelessWidget{
+   const MyDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +24,22 @@ class CustomDrawer extends StatelessWidget{
             //   color: kSecondColor,
             // ),
             buildDrawerItem(
-                text: 'Profile',
+                text: 'My Account',
                 icon: Icons.person_outline,
                 textIconColor: kPrimaryColor,
                 tileColor: kSecondaryColor,
                 onTap: (){
                   Get.toNamed(ProfileView.id);
                 },
+            ),
+            buildDrawerItem(
+              text: 'Communities',
+              icon: Icons.people_alt_outlined,
+              textIconColor: kPrimaryColor,
+              tileColor: kSecondaryColor,
+              onTap: (){
+                Get.toNamed(CommunitiesView.id);
+              },
             ),
             buildDrawerItem(
               text: 'Settings',
@@ -55,29 +67,36 @@ class CustomDrawer extends StatelessWidget{
   }
 
   buildDrawerHeader() {
-    return const UserAccountsDrawerHeader(
-      decoration: BoxDecoration(
+    return UserAccountsDrawerHeader(
+      decoration: const BoxDecoration(
         color: kPrimaryColor,
       ),
-      accountName: Text(
+      accountName: const Text(
           'Ahmed Khallaf',
-        style: TextStyle(
+        style:  TextStyle(
           fontWeight: FontWeight.bold,
           color: kForegroundColor,
         ),
       ),
-      accountEmail: Text(
+      accountEmail: const Text(
         'ahmedkhallaf2098@gmail.com',
-        style: TextStyle(
+        style:  TextStyle(
             color: kForegroundColor,
         ),
       ),
-      currentAccountPicture: CircleAvatar(
-        backgroundImage: AssetImage('assets/images/ahmedkhallaf.jpeg',),
+      currentAccountPicture: GestureDetector(
+        onTap: (){
+          Get.to(() => ProfilePage(profile: myProfile ),
+            transition: Transition.downToUp,
+          );
+        },
+        child: const CircleAvatar(
+          backgroundImage: AssetImage('assets/images/ahmedkhallaf.jpeg',),
+        ),
       ),
-      currentAccountPictureSize: Size.square(72.0),
+      currentAccountPictureSize: const Size.square(72.0),
       otherAccountsPictures: 
-      [
+      const [
         CircleAvatar(
           backgroundColor: kForegroundColor,
           child: Text(
@@ -87,7 +106,7 @@ class CustomDrawer extends StatelessWidget{
             ),),
         ),
       ],
-      otherAccountsPicturesSize: Size.square(50.0),
+      otherAccountsPicturesSize: const Size.square(50.0),
 
 );}
 

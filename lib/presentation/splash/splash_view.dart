@@ -28,8 +28,9 @@ class _SplashViewState extends State<SplashView> {
     _startDelay();
   }
 
+  @override
   Widget build(BuildContext context) {
-    return  SplashViewBody();
+    return  const SplashViewBody();
   }
 
   @override

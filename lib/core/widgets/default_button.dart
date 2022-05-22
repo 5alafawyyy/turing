@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget DefaultButton({
+Widget defaultButton({
   required Function onPressed,
   required String text,
   required Color textColor,

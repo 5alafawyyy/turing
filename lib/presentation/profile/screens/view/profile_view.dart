@@ -17,7 +17,7 @@ class ProfileView extends StatelessWidget {
           onPressed: () => Get.back(),
         ),
         title: const Text(
-            'Profile',
+            'My Account',
             style: TextStyle(
               fontWeight: FontWeight.w400,
             ),

@@ -70,7 +70,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     const SizedBox(
                       height: 20.0,
                     ),
-                    DefaultTextField(
+                    defaultTextField(
                       controller: emailController,
                       type: TextInputType.emailAddress,
                       onChange: (data) {
@@ -92,7 +92,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     const SizedBox(
                       height: 10,
                     ),
-                    DefaultTextField(
+                    defaultTextField(
                       controller: passwordController,
                       type: TextInputType.visiblePassword,
                       onChange: (data) {
@@ -130,7 +130,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     const SizedBox(
                       height: 20.0,
                     ),
-                    DefaultButton(
+                    defaultButton(
                       onPressed: () async {
 
                         if (formKey.currentState!.validate()) {

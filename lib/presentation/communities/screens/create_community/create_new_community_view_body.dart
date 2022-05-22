@@ -79,7 +79,7 @@ class CreateCommunityViewBody extends StatelessWidget {
                         const SizedBox(
                           height: 20.0,
                         ),
-                        DefaultButton(
+                        defaultButton(
                           text: 'Finish',
                           textColor: kForegroundColor,
                           themeColor: kPrimaryColor,

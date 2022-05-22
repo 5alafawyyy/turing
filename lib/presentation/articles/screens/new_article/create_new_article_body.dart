@@ -77,7 +77,7 @@ class CreateNewArticleBody extends StatelessWidget {
                         const SizedBox(
                           height: 20.0,
                         ),
-                        DefaultButton(
+                        defaultButton(
                           text: 'Publish',
                           textColor: kForegroundColor,
                           themeColor: kPrimaryColor,

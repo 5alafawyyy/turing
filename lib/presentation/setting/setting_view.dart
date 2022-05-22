@@ -7,6 +7,6 @@ class SettingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SettingViewBody();
+    return const SettingViewBody();
   }
 }

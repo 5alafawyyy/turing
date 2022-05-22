@@ -84,7 +84,7 @@ class _ForgetViewBodyState extends State<ForgetViewBody> {
                   const SizedBox(
                     height: 30.0,
                   ),
-                  DefaultTextField(
+                  defaultTextField(
                     controller: emailController,
                     type: TextInputType.emailAddress,
                     onChange: (data) {
@@ -106,7 +106,7 @@ class _ForgetViewBodyState extends State<ForgetViewBody> {
                   const SizedBox(
                     height: 10,
                   ),
-                  DefaultButton(
+                  defaultButton(
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {
                         setState(() {
