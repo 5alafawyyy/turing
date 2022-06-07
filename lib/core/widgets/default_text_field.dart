@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget DefaultTextField({
+Widget defaultTextField({
   required TextEditingController controller,
   required TextInputType type,
   required String labelText,

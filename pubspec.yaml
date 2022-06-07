@@ -41,6 +41,8 @@ dependencies:
   modal_progress_hud_nsn: ^0.1.0-nullsafety-1
   dots_indicator: ^2.1.0
   image_picker: ^0.8.5+3
+  pull_to_refresh: ^2.0.0
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:

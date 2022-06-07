@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:turing/controllers/drawer_controller.dart';
 import 'package:turing/presentation/articles/articles_view.dart';
 import 'package:turing/presentation/home/home_view.dart';
-import 'package:turing/presentation/rooms/rooms_view.dart';
+import 'package:turing/presentation/rooms/screens/view/rooms_view.dart';
 
-class HomeController extends GetxController{
+class NavigationController extends GetxController{
   var drawerController =  Get.put(DrawerControllerView());
 
   var _lastActive = 3;

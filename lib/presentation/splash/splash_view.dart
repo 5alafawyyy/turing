@@ -1,7 +1,10 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:turing/controllers/control_view.dart';
+import 'package:turing/main.dart';
+import 'package:turing/presentation/auth/login/login_view.dart';
+import 'package:turing/presentation/onboarding/obboarding_view.dart';
 import 'package:turing/presentation/splash/splash_view_body.dart';
 
 class SplashView extends StatefulWidget {
@@ -19,7 +22,8 @@ class _SplashViewState extends State<SplashView> {
     _timer = Timer(const Duration(seconds: 2), _goNext);
   }
   _goNext(){
-    Get.offNamed('/onBoarding');
+    onboardScreen == 0 || onboardScreen == null ? Get.offNamed(OnBoardingView.id) : (isLoginSuccess ==false || isLoginSuccess == null ? Get.offNamed(LoginView.id) :Get.offAllNamed(ControlView.id));
+
   }
 
   @override
@@ -28,8 +32,9 @@ class _SplashViewState extends State<SplashView> {
     _startDelay();
   }
 
+  @override
   Widget build(BuildContext context) {
-    return  SplashViewBody();
+    return  const SplashViewBody();
   }
 
   @override

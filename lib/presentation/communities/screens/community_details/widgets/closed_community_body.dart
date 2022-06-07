@@ -51,7 +51,7 @@ Widget closedCommunityBody({
               ),
             ),
             DescriptionTextWidget(text: description),
-            DefaultButton(
+            defaultButton(
               text: 'Join',
               textColor: kForegroundColor,
               themeColor: kPrimaryColor,

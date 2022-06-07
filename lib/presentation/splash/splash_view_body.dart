@@ -17,6 +17,6 @@ class SplashViewBody extends StatelessWidget {
           ),
         ),
       ),
-    );;
+    );
   }
 }

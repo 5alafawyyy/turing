@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:turing/core/utils/styles.dart';
 
 class BodyText extends StatelessWidget{
   Color? color;
