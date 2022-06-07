@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turing/controllers/control_view.dart';
 import 'package:turing/core/utils/data.dart';
 import 'package:turing/core/utils/styles.dart';
@@ -23,11 +24,19 @@ import 'package:turing/presentation/rooms/screens/view/rooms_view.dart';
 import 'package:turing/presentation/profile/screens/profile_page/profile_page.dart';
 import 'package:turing/presentation/setting/setting_view.dart';
 import 'package:turing/presentation/splash/splash_view.dart';
-
 import 'presentation/communities/screens/create_community/create_new_community_view.dart';
 
-void main() {
-  //WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+int? onboardScreen;
+bool? isLoginSuccess;
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  onboardScreen = await prefs.getInt("onboardScreen");
+  isLoginSuccess = await prefs.getBool('loginSuccess');
+  await prefs.setInt("onboardScreen", 1);
+  print('onboardScreen $onboardScreen');
   runApp(const MyApp());
 }
 

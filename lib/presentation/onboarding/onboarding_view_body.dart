@@ -5,14 +5,9 @@ import 'package:turing/core/utils/styles.dart';
 import 'package:turing/data/models/onboard.dart';
 import 'package:turing/presentation/auth/login/login_view.dart';
 
-class OnBoardingViewBody extends StatefulWidget {
+class OnBoardingViewBody extends StatelessWidget {
   const OnBoardingViewBody({Key? key}) : super(key: key);
 
-  @override
-  State<OnBoardingViewBody> createState() => _OnBoardingViewBodyState();
-}
-
-class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,18 +19,20 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
         buttonColor: kForegroundColor,
         inactiveBulletColor: kSecondaryColor,
         activeBulletColor: kForegroundColor,
-        // backgroundProvider: NetworkImage('https://picsum.photos/720/1280'),
-        // skipCallback: () {
-        //   // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        //   //   content: Text("Skip clicked"),
-        //   // ));
-        // },
         finishCallback: () {
           Get.offNamed(LoginView.id);
+          ScaffoldMessenger.of(context).showSnackBar(
+           SnackBar(
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text("Intro Finished"),
+              ],
+            ),
+            backgroundColor: kPrimaryColor,
 
-          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          //   content: Text("Finish clicked"),
-
+          ),
+          );
         },
       ),
     );

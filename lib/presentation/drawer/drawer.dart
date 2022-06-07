@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turing/core/utils/data.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/presentation/auth/login/login_view.dart';
@@ -55,7 +56,9 @@ class MyDrawer extends StatelessWidget{
                 icon: Icons.close,
                 textIconColor: kPrimaryColor,
                 tileColor: kSecondaryColor,
-                onTap: () {
+                onTap: () async{
+                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool("loginSuccess", true);
                   Get.offAllNamed(LoginView.id);
                   },
             ),

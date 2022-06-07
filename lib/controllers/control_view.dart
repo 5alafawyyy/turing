@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turing/controllers/drawer_controller.dart';
-import 'package:turing/controllers/home_controller.dart';
+import 'package:turing/controllers/navigation_controller.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/presentation/drawer/drawer.dart';
 import 'package:turing/presentation/profile/screens/view/profile_view.dart';
@@ -13,7 +13,7 @@ class ControlView extends GetView<DrawerControllerView> {
   final drawerController =  Get.put(DrawerControllerView());
   @override
   Widget build(BuildContext context){
-    return GetBuilder<HomeController>(
+    return GetBuilder<NavigationController>(
         builder: (controller) {
           return Scaffold(
             backgroundColor: kBackgroundColor,
@@ -46,8 +46,8 @@ class ControlView extends GetView<DrawerControllerView> {
   }
 
   Widget bottomNavigationBar() {
-    return GetBuilder<HomeController>(
-      init: HomeController(),
+    return GetBuilder<NavigationController>(
+      init: NavigationController(),
       builder:(controller) => BottomNavigationBar(
         backgroundColor: kBackgroundColor,
         showSelectedLabels: true,
@@ -236,7 +236,7 @@ customAppBar( context, leading) {
     //   icon: const Icon(Icons.account_circle),
     // )
 
-    title:  GetBuilder<HomeController>(
+    title:  GetBuilder<NavigationController>(
       builder: (controller) => Text(
         controller.titleAppbar,
         style: const TextStyle(

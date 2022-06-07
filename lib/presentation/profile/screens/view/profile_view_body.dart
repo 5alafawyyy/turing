@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turing/presentation/auth/login/login_view.dart';
 import 'package:turing/presentation/profile/screens/edit_profile/edit_profile.dart';
 import 'package:turing/presentation/profile/screens/notification/notification.dart';
@@ -52,7 +53,9 @@ class ProfileViewBody extends StatelessWidget {
           ProfileMenu(
             text: "Log Out",
             icon: "assets/icons/exit.png",
-            onPressed: () {
+            onPressed: () async{
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              await prefs.setBool("loginSuccess", false);
               Get.offAll(
                     () => const LoginView(),
                 transition: Transition.fadeIn,

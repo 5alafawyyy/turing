@@ -8,15 +8,15 @@ final onboardPages = [
       titleColor: kBackgroundColor,
       bodyColor: kBackgroundColor,
       imageAssetPath: 'assets/images/01.png',
-      title: 'Screen 1',
-      body: 'Share your ideas with the team',
+      title: 'Articles',
+      body: 'Share articles for everyone',
       doAnimateImage: true),
   PageModel(
       color: kPrimaryColor,
       titleColor: kBackgroundColor,
       bodyColor: kBackgroundColor,
       imageAssetPath: 'assets/images/02.png',
-      title: 'Screen 2',
+      title: 'communities',
       body: 'See the increase in productivity & output',
       doAnimateImage: true),
   PageModel(
@@ -24,7 +24,7 @@ final onboardPages = [
       titleColor: kBackgroundColor,
       bodyColor: kBackgroundColor,
       imageAssetPath: 'assets/images/03.png',
-      title: 'Screen 3',
+      title: 'Rooms',
       body: 'Connect with the people from different places',
       doAnimateImage: true),
   PageModel.withChild(
