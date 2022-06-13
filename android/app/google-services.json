@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "80649759726",
+    "project_id": "turing-d92dd",
+    "storage_bucket": "turing-d92dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:80649759726:android:86cbe544d6b6916608bcff",
+        "android_client_info": {
+          "package_name": "com.example.turing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "80649759726-pm8cbg8q6v7gu03v7k1iv6srm67hs8h7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.turing",
+            "certificate_hash": "457ba1238e195fa62206731df5900b0587c52dd7"
+          }
+        },
+        {
+          "client_id": "80649759726-pg7lohklhlsmj02eg5cq0u3evrphs4qj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwykSXuCtYGnDCQnusLxBBi6GUZ7vwBqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "80649759726-pg7lohklhlsmj02eg5cq0u3evrphs4qj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

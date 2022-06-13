@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:turing/controllers/authController.dart';
 import 'package:turing/controllers/login_controller.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/default_button.dart';
 import 'package:turing/core/widgets/default_text_field.dart';
 import 'package:turing/presentation/auth/forget_password/forget_view.dart';
 import 'package:turing/presentation/auth/register/register_view.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class LoginViewBody extends StatelessWidget {
   LoginViewBody({Key? key}) : super(key: key);
@@ -106,6 +108,21 @@ class LoginViewBody extends StatelessWidget {
                         text: 'Sign In',
                         textColor: kForegroundColor,
                         themeColor: kPrimaryColor,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 45,
+                        child: SignInButton(
+                          Buttons.Google,
+                          text: "Sign In with Google",
+                          onPressed: () async {
+                            await AuthController.instance.signInWithGoogle();
+                          },
+                          elevation: 0.5,
+                        ),
                       ),
                       const SizedBox(
                         height: 10,

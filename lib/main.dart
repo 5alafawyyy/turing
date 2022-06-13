@@ -1,8 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:turing/controllers/authController.dart';
 import 'package:turing/controllers/control_view.dart';
 import 'package:turing/core/utils/data.dart';
 import 'package:turing/core/utils/styles.dart';
@@ -28,15 +30,18 @@ import 'presentation/communities/screens/create_community/create_new_community_v
 
 
 int? onboardScreen;
-bool? isLoginSuccess;
+// bool? isLoginSuccess;
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp().then((value) => Get.put(AuthController()));
+
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  onboardScreen = await prefs.getInt("onboardScreen");
-  isLoginSuccess = await prefs.getBool('loginSuccess');
+  onboardScreen = prefs.getInt("onboardScreen");
+  // isLoginSuccess = prefs.getBool('loginSuccess');
   await prefs.setInt("onboardScreen", 1);
-  print('onboardScreen $onboardScreen');
+
+
   runApp(const MyApp());
 }
 
@@ -53,7 +58,7 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
       //initialRoute: 'SplashView',
-      initialBinding: Binding(),
+      // initialBinding: Binding(),
       getPages: [
         GetPage(name: SplashView.id, page: ()=>  const SplashView()),
         GetPage(name: OnBoardingView.id, page: ()=>  const OnBoardingView()),

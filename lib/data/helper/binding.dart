@@ -6,7 +6,7 @@ class Binding extends Bindings{
   
   @override
   void dependencies() {
-    Get.lazyPut(() => ControlView());
+    // Get.lazyPut(() => ControlView());
     Get.lazyPut(() => NavigationController());
   }
 }

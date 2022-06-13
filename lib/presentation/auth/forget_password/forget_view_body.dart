@@ -85,6 +85,7 @@ class ForgetViewBody extends StatelessWidget {
                         type: TextInputType.emailAddress,
                         onChange: (data) {
                           controller.email = data;
+                          print(data);
                         },
                         validate: controller.emailValidate,
                         labelText: 'Email Address',

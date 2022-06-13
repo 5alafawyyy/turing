@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:turing/controllers/authController.dart';
 import 'package:turing/controllers/register_controller.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/default_button.dart';
@@ -50,26 +52,26 @@ class RegisterViewBody extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(
-                        height: 60.0,
+                        height: 40.0,
                       ),
-                      defaultTextField(
-                        controller: controller.userController,
-                        type: TextInputType.name,
-                        onChange: (data)
-                        {
-                          controller.name = data;
-                        },
-                        validate: controller.userValidate,
-                        labelText: 'User Name',
-                        textFieldColor: kPrimaryColor,
-                        prefixIcon: const Icon(
-                          Icons.person_outline,
-                          color: kPrimaryColor,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      // defaultTextField(
+                      //   controller: controller.userController,
+                      //   type: TextInputType.name,
+                      //   onChange: (data)
+                      //   {
+                      //     controller.name = data;
+                      //   },
+                      //   validate: controller.userValidate,
+                      //   labelText: 'User Name',
+                      //   textFieldColor: kPrimaryColor,
+                      //   prefixIcon: const Icon(
+                      //     Icons.person_outline,
+                      //     color: kPrimaryColor,
+                      //   ),
+                      // ),
+                      // const SizedBox(
+                      //   height: 10,
+                      // ),
                       defaultTextField(
                         controller: controller.emailController,
                         type: TextInputType.emailAddress,
@@ -93,7 +95,7 @@ class RegisterViewBody extends StatelessWidget {
                         type: TextInputType.visiblePassword,
                         onChange: (data)
                         {
-                          controller.password = data;
+                          // controller.password = data;
                         },
                         validate: controller.passValidate,
                         labelText: 'Password',
@@ -121,7 +123,22 @@ class RegisterViewBody extends StatelessWidget {
                         themeColor: kPrimaryColor,
                       ),
                       const SizedBox(
-                        height: 40,
+                        height: 10,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 45,
+                        child: SignInButton(
+                          Buttons.Google,
+                          text: "Sign Up with Google",
+                          onPressed: () async {
+                            await AuthController.instance.signInWithGoogle();
+                          },
+                          elevation: 0.5,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
