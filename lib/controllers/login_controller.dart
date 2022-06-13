@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:turing/controllers/authController.dart';
 import 'package:turing/controllers/control_view.dart';
 
 class LoginController extends GetxController{
@@ -42,18 +43,14 @@ class LoginController extends GetxController{
     update();
   }
 
-  Future<void> onSubmit() async {
+  void onSubmit() async {
     if (formKey.currentState!.validate()) {
       isLoading = true;
       update();
-      await Future.delayed(const Duration(seconds: 3));
-      isLoading =false;
-      await prefs.setBool("loginSuccess", true);
-      Get.offAllNamed(ControlView.id);
+
+      await AuthController.instance.login(emailController.text, passwordController.text);
+      isLoading = false;
       update();
-
-      //TODO: Implementation of Login with api
-
     }
   }
 

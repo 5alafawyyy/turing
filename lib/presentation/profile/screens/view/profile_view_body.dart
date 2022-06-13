@@ -8,6 +8,8 @@ import 'package:turing/presentation/profile/widgets/profile_menu.dart';
 import 'package:turing/presentation/profile/widgets/profile_pic.dart';
 import 'package:turing/presentation/setting/setting_view.dart';
 
+import '../../../../controllers/authController.dart';
+
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({Key? key}) : super(key: key);
 
@@ -54,8 +56,7 @@ class ProfileViewBody extends StatelessWidget {
             text: "Log Out",
             icon: "assets/icons/exit.png",
             onPressed: () async{
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              await prefs.setBool("loginSuccess", false);
+              AuthController.instance.logout();
               Get.offAll(
                     () => const LoginView(),
                 transition: Transition.fadeIn,

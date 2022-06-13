@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:turing/controllers/authController.dart';
 import 'package:turing/core/utils/styles.dart';
 
 class ForgetPassController extends GetxController{
@@ -21,11 +22,11 @@ class ForgetPassController extends GetxController{
     if (formKey.currentState!.validate()) {
       isLoading = true;
       update();
-      await Future.delayed(const Duration(seconds: 3));
+      await AuthController.instance.forgetPass(emailController.text);
 
-      isLoading =false;
-      Get.back();
+      isLoading = false;
       update();
+
       Get.snackbar(
         'Recovered',
         'Email has been sent to you',
@@ -34,7 +35,6 @@ class ForgetPassController extends GetxController{
         backgroundColor: kPrimaryColor,
         colorText: kForegroundColor,
       );
-      //TODO: Implementation of Forget Pass with api
     }
   }
 

@@ -22,7 +22,7 @@ class _SplashViewState extends State<SplashView> {
     _timer = Timer(const Duration(seconds: 2), _goNext);
   }
   _goNext(){
-    onboardScreen == 0 || onboardScreen == null ? Get.offNamed(OnBoardingView.id) : (isLoginSuccess ==false || isLoginSuccess == null ? Get.offNamed(LoginView.id) :Get.offAllNamed(ControlView.id));
+    // onboardScreen == 0 || onboardScreen == null ? Get.offNamed(OnBoardingView.id) : (isLoginSuccess ==false || isLoginSuccess == null ? Get.offNamed(LoginView.id) :Get.offAllNamed(ControlView.id));
 
   }
 
