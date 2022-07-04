@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:turing/data/models/room.dart';
 
 class RoomController extends GetxController{
   final RefreshController _refreshController = RefreshController(initialRefresh: false);
@@ -27,7 +26,5 @@ get newRoomTitleController => _newRoomTitleController;
     update();
   }
 
-  void entreRoom(Room room){
 
-  }
 }

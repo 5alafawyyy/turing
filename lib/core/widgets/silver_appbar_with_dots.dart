@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 Widget silverAppBarWithDots ({
   required String appBarTitle,
   required Color appBarTitleColor,
-  required Widget backGroundWidget,
+  Widget? backGroundWidget,
   required Color backGroundColor,
   required Widget iconWidget,
   required BuildContext context,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:turing/controllers/authController.dart';
 import 'package:turing/controllers/login_controller.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/default_button.dart';
@@ -119,7 +118,7 @@ class LoginViewBody extends StatelessWidget {
                           Buttons.Google,
                           text: "Sign In with Google",
                           onPressed: () async {
-                            await AuthController.instance.signInWithGoogle();
+                            await controller.googleSignIn();
                           },
                           elevation: 0.5,
                         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:turing/controllers/authController.dart';
 import 'package:turing/controllers/drawer_controller.dart';
 import 'package:turing/controllers/navigation_controller.dart';
 import 'package:turing/core/utils/styles.dart';
@@ -26,12 +27,36 @@ class ControlView extends GetView<DrawerControllerView> {
                   duration: const Duration(milliseconds: 250),
                 );
               },
-              child: const Tab(
-                icon: CircleAvatar(
-                  backgroundImage: AssetImage(
-                    'assets/images/ahmedkhallaf.jpeg',
+              child:  Tab(
+                  icon: FutureBuilder(
+                    future: AuthController.instance.getUserData(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting){
+                        return CircularProgressIndicator(
+                          color: kPrimaryColor,
+                          strokeWidth: 2.0,
+                        );
+                      }
+                      if (snapshot.hasData){
+                        return CircleAvatar(
+                          backgroundImage: NetworkImage(
+                            "${AuthController.instance.currentData.photoUrl}",
+                          ),
+                          foregroundColor: kLightColor,
+                          backgroundColor: kLightColor,
+                        );
+                      }
+                      else{
+                        return CircleAvatar(
+                          backgroundImage: const AssetImage(
+                            "assets/images/no-user.png",
+                          ),
+                          foregroundColor: kLightColor,
+                          backgroundColor: kLightColor,
+                        );
+                      }
+                    }
                   ),
-                ),
               ),
             ),
             ),
@@ -42,7 +67,6 @@ class ControlView extends GetView<DrawerControllerView> {
           );
         }
     );
-
   }
 
   Widget bottomNavigationBar() {
@@ -135,7 +159,7 @@ class CustomSearchDelegate extends SearchDelegate{
     return theme.copyWith(
       appBarTheme: AppBarTheme(
         backgroundColor: colorScheme.brightness == Brightness.dark ? kPrimaryColor : kForegroundColor,
-        iconTheme: theme.primaryIconTheme.copyWith(color: kPrimaryColor),
+        iconTheme: theme.primaryIconTheme.copyWith(color: kLightColor),
       ),
       inputDecorationTheme: searchFieldDecorationTheme ??
           InputDecorationTheme(
@@ -229,12 +253,6 @@ customAppBar( context, leading) {
     shadowColor: kBackgroundColor,
     elevation: 0,
     leading: leading,
-    // IconButton(
-    //   onPressed: (){
-    //
-    //   },
-    //   icon: const Icon(Icons.account_circle),
-    // )
 
     title:  GetBuilder<NavigationController>(
       builder: (controller) => Text(

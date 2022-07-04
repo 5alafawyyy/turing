@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
-import 'package:turing/core/utils/data.dart';
+import 'package:turing/controllers/authController.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/body_text.dart';
 import 'package:turing/core/widgets/title_text.dart';
@@ -10,14 +10,13 @@ import 'package:turing/presentation/profile/screens/profile_page/profile_page.da
 
 class ProfilePic extends StatelessWidget {
 
-
   ProfileController controller = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Get.to(() => ProfilePage(profile: myProfile ),
-            transition: Transition.downToUp,
+      onTap: () async{
+        Get.to(() => ProfilePage(),
+            transition: Transition.rightToLeftWithFade,
         );
       },
       child: SizedBox(
@@ -27,20 +26,37 @@ class ProfilePic extends StatelessWidget {
           fit: StackFit.expand,
           clipBehavior: Clip.none,
           children: [
-            GetBuilder<ProfileController>(
-              builder: (controller) => CircleAvatar(
-                backgroundImage:  controller.image == null?
-                const AssetImage(
-                  "assets/images/ahmedkhallaf.jpeg",
-                )
-                    :
-                Image.file(
-                  controller.image,
-                  fit: BoxFit.cover,
-                ).image,
-                backgroundColor: kPrimaryColor,
-
-              ),
+            FutureBuilder(
+              future: AuthController.instance.getUserData(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting){
+                  return CircularProgressIndicator(
+                    color: kPrimaryColor,
+                    strokeWidth: 2.0,
+                  );
+                }
+                if (snapshot.hasData){
+                  return GetBuilder<ProfileController>(
+                    init: ProfileController(),
+                    builder: (controller) => CircleAvatar(
+                        backgroundImage: NetworkImage(
+                        "${AuthController.instance.currentData.photoUrl}",
+                    ),
+                      foregroundColor: kLightColor,
+                      backgroundColor: kLightColor,
+                    ),
+                  );
+                }
+                else{
+                  return CircleAvatar(
+                      backgroundImage: const AssetImage(
+                        "assets/images/no-user.png",
+                      ),
+                    foregroundColor: kLightColor,
+                    backgroundColor: kLightColor,
+                  );
+                }
+            },
             ),
             Positioned(
               right: -10,
@@ -74,9 +90,9 @@ class ProfilePic extends StatelessWidget {
                             ListTile(
                               onTap: () {
                                 try {
-                                  controller
-                                      .cameraGetter();
+                                  controller.cameraGetter();
                                   Get.back();
+                                  controller.uploadToFirebase();
                                 } catch (error) {
                                   Get.back();
                                 }
@@ -97,9 +113,9 @@ class ProfilePic extends StatelessWidget {
                             ListTile(
                               onTap: () {
                                 try {
-                                  controller
-                                      .galleryGetter();
+                                  controller.galleryGetter();
                                   Get.back();
+                                  controller.uploadToFirebase();
                                 } catch (error) {
                                   Get.back();
                                 }
@@ -137,3 +153,18 @@ class ProfilePic extends StatelessWidget {
 }
 
 
+//GetBuilder<ProfileController>(
+//               builder: (controller) => CircleAvatar(
+//                 backgroundImage:  controller.image == null?
+//                 const AssetImage(
+//                   "assets/images/ahmedkhallaf.jpeg",
+//                 )
+//                     :
+//                 Image.file(
+//                   controller.image,
+//                   fit: BoxFit.cover,
+//                 ).image,
+//                 backgroundColor: kPrimaryColor,
+//
+//               ),
+//             )

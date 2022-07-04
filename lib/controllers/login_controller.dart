@@ -49,9 +49,18 @@ class LoginController extends GetxController{
       update();
 
       await AuthController.instance.login(emailController.text, passwordController.text);
+      await AuthController.instance.getUserData();
       isLoading = false;
       update();
     }
+  }
+
+  Future<void> googleSignIn()async {
+    isLoading = true;
+    update();
+    await AuthController.instance.signInWithGoogle();
+    await AuthController.instance.getUserData();
+
   }
 
 }

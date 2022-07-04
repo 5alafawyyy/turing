@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,25 +8,35 @@ import 'package:turing/core/utils/styles.dart';
 import 'package:turing/data/helper/binding.dart';
 import 'package:turing/presentation/auth/login/login_view.dart';
 
-class AuthController extends GetxController{
+import '../data/models/user.dart';
+
+class AuthController extends GetxController {
+
   // AuthController.instance..
   static AuthController instance = Get.find();
+
   //email, pass, name ...
   late Rx<User?> _user;
   FirebaseAuth auth = FirebaseAuth.instance;
 
+
   @override
-  void onReady(){
+  void onInit() async{
+    await getUserData();
+    super.onInit();
+  }
+  @override
+  void onReady() {
     super.onReady();
     _user = Rx<User?>(auth.currentUser);
     _user.bindStream(auth.userChanges());
     ever(_user, _isLoggedIn);
   }
 
-  _isLoggedIn(User? user){
-    if(user == null){
+  _isLoggedIn(User? user) {
+    if (user == null) {
       Get.offAll(() => LoginView());
-    }else{
+    } else {
       Get.offAll(() => ControlView(), binding: Binding());
     }
   }
@@ -34,7 +45,8 @@ class AuthController extends GetxController{
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    final GoogleSignInAuthentication? googleAuth = await googleUser
+        ?.authentication;
 
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
@@ -45,52 +57,34 @@ class AuthController extends GetxController{
     // Once signed in, return the UserCredential
     UserCredential userCredential = await auth.signInWithCredential(credential);
     User? user = userCredential.user;
-    print(user);
+    FirebaseFirestore.instance.collection('userData').doc(user?.uid).set({
+      "email": user?.email,
+      "uid": user?.uid,
+      "displayName": user?.displayName,
+      "photoUrl": user?.photoURL,
+    });
+    update();
+
   }
 
-  // Future<void> loginWithGoogle() async{
-  //   try
-  //   {
-  //     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-  //
-  //     // Obtain the auth details from the request
-  //     final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-  //
-  //     // Create a new credential
-  //     final credential = GoogleAuthProvider.credential(
-  //       accessToken: googleAuth?.accessToken,
-  //       idToken: googleAuth?.idToken,
-  //     );
-  //
-  //     UserCredential userCredential = await auth.signInWithCredential(credential);
-  //     User? user = userCredential.user;
-  //
-  //
-  //     // if(user != null){
-  //     //   if(userCredential.additionalUserInfo!.isNewUser){
-  //     //     await _firestore.collection('users').doc(user.uid).set({
-  //     //       'username' : user.displayName,
-  //     //       'uid' : user.uid,
-  //     //       'profilePhoto': user.photoURL,
-  //     //       'email': user.email,
-  //     //     }).then((value) => print('User Added'))
-  //     //         .catchError((e) => print('Failed to add user: $e'));
-  //     //   }
-  //     //
-  //     // }
-  //     // Once signed in, return the UserCredential
-  //     // return Right(await FirebaseAuth.instance.signInWithCredential(credential));
-  //   }
-  //   on FirebaseAuthException catch(e){
-  //
-  //     // return Left(Exception('Something went Wrong: $e'));
-  //   }
-  // }
 
-  Future<void> register(String email, password) async{
-    try{
-      await auth.createUserWithEmailAndPassword(email: email, password: password);
-    }on FirebaseAuthException catch (e) {
+  Future<void> register(String email, password) async {
+    try {
+      await auth.createUserWithEmailAndPassword(
+          email: email,
+          password: password
+      ).then((value) {
+        FirebaseFirestore.instance.collection('userData')
+            .doc(value.user?.uid)
+            .set({
+          "email": value.user?.email,
+          "uid": value.user?.uid,
+          "displayName": value.user?.displayName,
+          "photoUrl": value.user?.photoURL,
+        });
+        // prefs.setString('userID', value.user?.uid);
+      });
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         Get.snackbar(
           "About User",
@@ -134,7 +128,7 @@ class AuthController extends GetxController{
         );
 
         print('The account already exists for that email.');
-      }else{
+      } else {
         Get.snackbar(
           "About User",
           "User message",
@@ -155,7 +149,7 @@ class AuthController extends GetxController{
 
         );
       }
-    }catch(e){
+    } catch (e) {
       Get.snackbar(
         "About User",
         "User message",
@@ -178,10 +172,13 @@ class AuthController extends GetxController{
     }
   }
 
-  Future<void> login(String email, password) async{
-    try{
-      await auth.signInWithEmailAndPassword(email: email, password: password);
-    }on FirebaseAuthException catch (e) {
+  Future<void> login(String email, password) async {
+    try {
+      await auth.signInWithEmailAndPassword(email: email, password: password)
+          .then((value) {
+        // prefs.setString('userID', value.user?.uid);
+      });
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         Get.snackbar(
           "About Login",
@@ -224,7 +221,7 @@ class AuthController extends GetxController{
 
         );
         print('Wrong password provided for that user.');
-      }else{
+      } else {
         Get.snackbar(
           "About Login",
           "Login message",
@@ -236,7 +233,7 @@ class AuthController extends GetxController{
               color: kBackgroundColor,
             ),
           ),
-          messageText:  Text(
+          messageText: Text(
             e.toString(),
             style: const TextStyle(
               color: kBackgroundColor,
@@ -245,7 +242,7 @@ class AuthController extends GetxController{
 
         );
       }
-    }catch(e){
+    } catch (e) {
       Get.snackbar(
         "About Login",
         "Login message",
@@ -266,10 +263,12 @@ class AuthController extends GetxController{
 
       );
     }
+    update();
+
   }
 
-  Future<void> forgetPass(String email) async{
-    try{
+  Future<void> forgetPass(String email) async {
+    try {
       await auth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -294,7 +293,7 @@ class AuthController extends GetxController{
         );
         print('No user found for that email.');
       }
-      else{
+      else {
         Get.snackbar(
           "About reset password",
           "Forget password message",
@@ -314,13 +313,74 @@ class AuthController extends GetxController{
           ),
         );
       }
-    }catch(e){
-     print(e);
+    } catch (e) {
+      print(e);
     }
   }
 
-  Future<void> logout() async{
+  Future<void> logout() async {
     await auth.signOut();
+    AuthController.instance.currentData = UserModel(
+      uid: null.toString(),
+      displayName: null.toString(),
+      photoUrl: null.toString(),
+      email: null.toString(),
+    );
+    update();
+
+    // await prefs.remove('userID');
   }
 
+
+
+
+  late UserModel currentData;
+
+  Future<UserModel> getUserData() async{
+    UserModel userModel;
+    var value =  await FirebaseFirestore.instance
+        .collection('userData')
+        .doc(auth.currentUser?.uid)
+        .get();
+    if (value.exists){
+      userModel = UserModel(
+        uid: value.get("uid"),
+        displayName: value.get("displayName"),
+        photoUrl: value.get("photoUrl"),
+        email: value.get("email"),
+      );
+      currentData = userModel;
+      update();
+      return currentData;
+    }
+    else{
+      return UserModel(
+        uid: null.toString(),
+        displayName: null.toString(),
+        photoUrl: null.toString(),
+        email: null.toString(),
+      );
+    }
+
+
+  }
+
+  void updateUserData({
+    required User currentUser,
+    required String displayName,
+    required String photoUrl,
+    required String email,
+  }) async{
+    await FirebaseFirestore.instance
+        .collection("userData")
+        .doc(auth.currentUser?.uid)
+        .set(
+        {
+          "displayName": displayName,
+          "photoUrl": photoUrl,
+          "email": email,
+        }
+        , SetOptions( merge: true));
+
+  }
 }

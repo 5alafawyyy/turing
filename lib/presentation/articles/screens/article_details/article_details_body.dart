@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turing/core/utils/styles.dart';
@@ -16,22 +17,9 @@ class ArticleDetailsBody extends StatelessWidget {
       body: silverAppBarWithDots(
         appBarTitle: '${Get.arguments['titleText']}',
         appBarTitleColor: kPrimaryColor,
-        backGroundWidget: Container(
-          color: kLightColor,
-          padding: const EdgeInsets.only(bottom: 50.0),
-          child: Container(
-            color: kBackgroundColor,
-            child: Image.asset(
-              '${Get.arguments['imgUrl']}',
-              color: kBackgroundColor.withOpacity(0.5),
-              colorBlendMode: BlendMode.darken,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
         backGroundColor: kBackgroundColor,
         context: context,
-        height: 280,
+        height: 30,
         showDotsIcon: true,
         iconWidget: PopupMenuButton(
           key: controller.menuKey,
@@ -52,7 +40,7 @@ class ArticleDetailsBody extends StatelessWidget {
         ),
 
         // Body
-        childCount: controller.childCount,
+        childCount: 1,
         bodyWidget: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -69,41 +57,62 @@ class ArticleDetailsBody extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(
+              height: 8.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  color: kPrimaryColor,
+                  child: Expanded(
+                    child: Text(
+                      'This article written by: ${Get.arguments['author']}',
+                      style: TextStyle(
+                        color: kLightColor,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
 
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            controller.loveArticle();
-          },
-          tooltip: 'Love',
-          backgroundColor: kBackgroundColor,
-          isExtended: true,
-          splashColor: kLightColor,
-          foregroundColor: kLightColor,
-          hoverColor: kLightColor,
-          focusColor: kLightColor,
-          elevation: 0.0,
-          child: GetBuilder<ArticlesController>(
-            builder: (controller) => controller.isLoved
-                ?
-            Image.asset(
-              'assets/icons/heart_fill.png',
-              semanticLabel: 'Loved',
-              color: kPrimaryColor,
-              height: 35.0,
-              width: 35.0,
-
-            )
-                :
-            Image.asset(
-              'assets/icons/heart.png',
-              color: kPrimaryColor,
-              height: 35.0,
-              width: 35.0,
-            ),
-          )),
+      // floatingActionButton: FloatingActionButton(
+      //     onPressed: () {
+      //       controller.loveArticle();
+      //     },
+      //     tooltip: 'Love',
+      //     backgroundColor: kBackgroundColor,
+      //     isExtended: true,
+      //     splashColor: kLightColor,
+      //     foregroundColor: kLightColor,
+      //     hoverColor: kLightColor,
+      //     focusColor: kLightColor,
+      //     elevation: 0.0,
+      //     child: GetBuilder<ArticlesController>(
+      //       builder: (controller) => controller.isLoved ?
+      //       Image.asset(
+      //         'assets/icons/heart_fill.png',
+      //         semanticLabel: 'Loved',
+      //         color: kPrimaryColor,
+      //         height: 35.0,
+      //         width: 35.0,
+      //
+      //       )
+      //           :
+      //       Image.asset(
+      //         'assets/icons/heart.png',
+      //         color: kPrimaryColor,
+      //         height: 35.0,
+      //         width: 35.0,
+      //       ),
+      //     )),
     );
   }
 }

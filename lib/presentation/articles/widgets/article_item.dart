@@ -5,9 +5,9 @@ import 'package:turing/core/widgets/title_text.dart';
 
 Widget articleItem ({
   required VoidCallback onTap,
-  required String imgUrl,
-  required String titleText,
-  required String description,
+  required String title,
+  required String desc,
+  int? likesNo,
 
 
 }){
@@ -31,14 +31,14 @@ Widget articleItem ({
                 children: [
                   TitleText(
                     color: kPrimaryColor,
-                    text: titleText,
+                    text: title,
                   ),
                   const SizedBox(
                     height: 8.0,
                   ),
                   BodyText(
                     color: kPrimaryColor,
-                    text: description,
+                    text: desc,
                     size: 13,
                     maxLines: 3,
                   ),
@@ -49,20 +49,7 @@ Widget articleItem ({
               ),
             ),
           ),
-          // Image Section
-          Container(
-            width: 100,
-            height: 100,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: kForegroundColor,
-              image: DecorationImage(
-                opacity: 0.8,
-                fit: BoxFit.cover,
-                image: AssetImage(imgUrl),
-              ),
-            ),
-          ),
+
 
         ],
       ),

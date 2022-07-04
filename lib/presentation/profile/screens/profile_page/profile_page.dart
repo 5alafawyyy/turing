@@ -1,18 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:turing/core/utils/data.dart';
+import 'package:turing/controllers/authController.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/round_image.dart';
-import 'package:turing/data/models/user.dart';
-
 
 class ProfilePage extends StatelessWidget {
   static String id = '/profilePage';
-  final User profile;
 
-  const ProfilePage({ required this.profile});
-
+  AuthController controller = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,23 +17,13 @@ class ProfilePage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios, color: kPrimaryColor),
           onPressed: () => Get.back(),
         ),
-        // title: const Text(
-        //   'Profile',
-        //   style: TextStyle(
-        //     fontWeight: FontWeight.w400,
-        //   ),
-        // ),
         centerTitle: true,
         backgroundColor: kBackgroundColor,
         foregroundColor: kPrimaryColor,
         elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(
-          left: 20.0,
-          right: 20.0,
-          top: 20.0
-        ),
+        padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
         child: Column(
           children: [
             buildProfile(),
@@ -56,17 +41,17 @@ class ProfilePage extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        RoundImage(
-          path: profile.profileImage,
-          width: 100,
-          height: 100,
-          borderRadius: 35,
+        CircleAvatar(
+            backgroundImage: NetworkImage(
+          "${AuthController.instance.currentData.photoUrl}",
+        ),
+        radius: 50.0,
         ),
         const SizedBox(
           height: 20,
         ),
         Text(
-          profile.name,
+          "${AuthController.instance.currentData.displayName}",
           style: const TextStyle(
             fontSize: 25,
             color: kPrimaryColor,
@@ -76,24 +61,13 @@ class ProfilePage extends StatelessWidget {
         const SizedBox(
           height: 5,
         ),
-        Text(
-          profile.username,
-          style: const TextStyle(
-            fontSize: 15,
-            color: kPrimaryColor,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(
-          height: 15,
-        ),
         Row(
           children: [
             RichText(
               text: TextSpan(
                 children: <TextSpan>[
                   TextSpan(
-                    text: profile.followers,
+                    text: "50k",
                     style: const TextStyle(
                       fontSize: 20,
                       color: kPrimaryColor,
@@ -114,7 +88,7 @@ class ProfilePage extends StatelessWidget {
               text: TextSpan(
                 children: <TextSpan>[
                   TextSpan(
-                    text: profile.following,
+                    text: "1",
                     style: const TextStyle(
                       fontSize: 20,
                       color: kPrimaryColor,
@@ -133,7 +107,7 @@ class ProfilePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Text(
-            dummyText,
+            "Founder of Turing",
             style: const TextStyle(
               fontSize: 15,
               color: kPrimaryColor,
@@ -147,8 +121,10 @@ class ProfilePage extends StatelessWidget {
   Widget builderInviter() {
     return Row(
       children: [
-        const RoundImage(
-          path: 'assets/images/ahmedkhallaf.jpeg',
+        CircleAvatar(
+          backgroundImage: NetworkImage(
+            "${AuthController.instance.currentData.photoUrl}",
+          ),
         ),
         const SizedBox(
           width: 10,
@@ -162,7 +138,9 @@ class ProfilePage extends StatelessWidget {
                 color: kPrimaryColor,
               ),
             ),
-            const SizedBox(height: 3,),
+            const SizedBox(
+              height: 3,
+            ),
             RichText(
               text: const TextSpan(
                 children: <TextSpan>[

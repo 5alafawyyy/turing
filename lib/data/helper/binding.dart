@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:turing/controllers/control_view.dart';
 import 'package:turing/controllers/navigation_controller.dart';
+import 'package:turing/presentation/articles/controllers/articles_controller.dart';
 
 class Binding extends Bindings{
   

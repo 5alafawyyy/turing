@@ -52,4 +52,10 @@ class RegisterController extends GetxController{
     }
   }
 
+  Future<void> googleLogout ()async {
+    isLoading = true;
+    update();
+    await AuthController.instance.signInWithGoogle();
+  }
+
 }

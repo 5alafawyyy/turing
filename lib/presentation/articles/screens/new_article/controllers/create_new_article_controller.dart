@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turing/core/utils/styles.dart';
 
 class CreateNewArticleController extends GetxController {
 
+  CollectionReference articlesRef = FirebaseFirestore.instance.collection("articles");
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
@@ -16,8 +20,16 @@ class CreateNewArticleController extends GetxController {
     return null;
   }
   GlobalKey<FormState> formKey = GlobalKey();
-  void createArticle() {
+  void createArticle() async{
     if (formKey.currentState!.validate()) {
+
+      articlesRef.add({
+        "title": titleController.text,
+        "desc" : descController.text,
+        "author" : auth.currentUser!.displayName,
+        "id": auth.currentUser!.uid,
+        "likes" : 0,
+      });
 
       Get.back();
       Get.snackbar(
