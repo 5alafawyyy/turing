@@ -6,10 +6,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turing/controllers/authController.dart';
 import 'package:turing/controllers/control_view.dart';
-import 'package:turing/core/utils/data.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/data/helper/binding.dart';
 import 'package:turing/presentation/articles/articles_view.dart';
+import 'package:turing/presentation/articles/controllers/articles_controller.dart';
 import 'package:turing/presentation/articles/screens/article_details/article_details_view.dart';
 import 'package:turing/presentation/articles/screens/new_article/create_new_article_view.dart';
 import 'package:turing/presentation/auth/forget_password/forget_view.dart';
@@ -34,7 +34,11 @@ int? onboardScreen;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp().then((value) => Get.put(AuthController()));
+  await Firebase.initializeApp().then((value) {
+    Get.put(AuthController());
+    Get.put(ArticlesController());
+  });
+
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
   onboardScreen = prefs.getInt("onboardScreen");
@@ -50,9 +54,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: kPrimaryColor
-      )
+        const SystemUiOverlayStyle(
+            statusBarColor: kPrimaryColor
+        )
     );
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky );
 
@@ -70,7 +74,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: RoomsView.id, page: ()=>  const RoomsView()),
         GetPage(name: ArticlesView.id, page: ()=>  const ArticlesView()),
         GetPage(name: ProfileView.id, page: ()=>  const ProfileView()),
-        GetPage(name: ProfilePage.id, page: () => ProfilePage(profile: myProfile,)),
+        GetPage(name: ProfilePage.id, page: () => ProfilePage()),
         GetPage(name: SettingView.id, page: ()=>  const SettingView()),
         GetPage(name: CommunitiesView.id, page: ()=>  const CommunitiesView()),
         GetPage(name: CommunityPageDetailsView.id, page: ()=> const CommunityPageDetailsView()),
@@ -95,7 +99,7 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           backgroundColor: kBackgroundColor,
           toolbarTextStyle: TextStyle(
-            fontFamily: 'Poppins'
+              fontFamily: 'Poppins'
           ),
           iconTheme: IconThemeData(
             color: kPrimaryColor,

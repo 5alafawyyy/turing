@@ -4,15 +4,13 @@ import 'package:turing/core/utils/data.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/round_button.dart';
 import 'package:turing/core/widgets/round_image.dart';
-import 'package:turing/data/models/room.dart';
 import 'package:turing/data/models/user.dart';
 import 'package:turing/presentation/profile/screens/profile_page/profile_page.dart';
 import 'package:turing/presentation/rooms/screens/room_page/widgets/room_profile.dart';
+import 'package:turing/presentation/rooms/screens/video_call/video_call.dart';
 
 class RoomPage extends StatelessWidget {
-  final Room room;
 
-   const RoomPage({ required this.room});
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +37,11 @@ class RoomPage extends StatelessWidget {
             const Spacer(),
             GestureDetector(
               onTap: () {
-                Get.to(() =>ProfilePage(
-                  profile: myProfile,
-                ),
+                Get.to(() =>ProfilePage(),
                 );
               },
               child: RoundImage(
-                path: myProfile.profileImage,
+                path: "myProfile.profileImage",
                 width: 40,
                 height: 40,
               ),
@@ -71,7 +67,7 @@ class RoomPage extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  buildTitle(room.title),
+                  buildTitle(),
                   const SizedBox(
                     height: 30,
                   ),
@@ -90,14 +86,14 @@ class RoomPage extends StatelessWidget {
     );
   }
 
-  Widget buildTitle(String title) {
+  Widget buildTitle() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Flexible(
           child: Text(
-            title,
+            "title",
             style: const TextStyle(
               color: kPrimaryColor,
               fontSize: 20,
@@ -105,20 +101,11 @@ class RoomPage extends StatelessWidget {
             ),
           ),
         ),
-        // Container(
-        //   child: IconButton(
-        //     onPressed: () {
-        //
-        //     },
-        //     iconSize: 30,
-        //     icon: const Icon(Icons.more_horiz),
-        //   ),
-        // ),
       ],
     );
   }
 
-  Widget buildSpeakers(List<User> users) {
+  Widget buildSpeakers(List<UserModel> users) {
     return GridView.builder(
       shrinkWrap: true,
       physics: const ScrollPhysics(),
@@ -138,7 +125,7 @@ class RoomPage extends StatelessWidget {
     );
   }
 
-  Widget buildOthers(List<User> users) {
+  Widget buildOthers(List<UserModel> users) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -179,7 +166,9 @@ class RoomPage extends StatelessWidget {
     return Container(
       child:RoundButton(
         onPressed: () {
+          // Get.to(() => VideoCall());
           //TODO: Join Room
+          // Get.to(() => VideoCall());
         },
         color: kPrimaryColor,
         child: const Text(

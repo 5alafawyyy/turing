@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:turing/core/utils/data.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/round_button.dart';
-import 'package:turing/data/models/room.dart';
 import 'package:turing/presentation/rooms/controllers/room_controller.dart';
 import 'package:turing/presentation/rooms/screens/room_page/room_page_details.dart';
 import 'package:turing/presentation/rooms/widgets/new_room_text_form_field.dart';
 import 'package:turing/presentation/rooms/widgets/room_card.dart';
+
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+
 
 class RoomsViewBody extends StatelessWidget {
   RoomController controller = Get.put(RoomController());
@@ -40,13 +41,10 @@ class RoomsViewBody extends StatelessWidget {
               right: 15,
             ),
             itemBuilder: (context, index) {
-              // if (index == 0) {
-              //   return buildScheduleCard();
-              // }
 
-              return buildRoomCard(rooms[index], context);
+              return buildRoomCard();
             },
-            itemCount: rooms.length,
+            itemCount: 1,
           ),
         ),
         buildStartRoomButton(context),
@@ -54,13 +52,11 @@ class RoomsViewBody extends StatelessWidget {
     );
   }
 
-  Widget buildRoomCard(Room room, BuildContext context) {
+  Widget buildRoomCard() {
     return GestureDetector(
       onTap: () {
         Get.bottomSheet(
-          RoomPage(
-            room: room,
-          ),
+          RoomPage(),
           enableDrag: true,
           backgroundColor: kLightColor,
           shape: const RoundedRectangleBorder(
@@ -76,9 +72,7 @@ class RoomsViewBody extends StatelessWidget {
         margin: const EdgeInsets.symmetric(
           vertical: 10,
         ),
-        child: RoomCard(
-          room: room,
-        ),
+        child: RoomCard(),
       ),
     );
   }

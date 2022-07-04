@@ -43,10 +43,12 @@ dependencies:
   image_picker: ^0.8.5+3
   pull_to_refresh: ^2.0.0
   shared_preferences: ^2.0.15
-  firebase_core: ^1.17.1
-  firebase_auth: ^3.3.19
+  firebase_core: ^1.19.1
+  firebase_auth: ^3.4.1
   google_sign_in: ^5.3.3
   flutter_signin_button: ^2.0.0
+  cloud_firestore: ^3.2.1
+  firebase_storage: ^10.3.1
 
 
 dev_dependencies:

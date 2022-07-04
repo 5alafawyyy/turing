@@ -6,7 +6,7 @@ import 'package:turing/data/models/user.dart';
 import 'package:turing/presentation/profile/screens/profile_page/profile_page.dart';
 
 class RoomProfile extends StatelessWidget {
-  final User user;
+  final UserModel user;
   final double size;
   final bool isMute;
   final bool isModerator;
@@ -26,20 +26,16 @@ class RoomProfile extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 Get.to(
-                  () => ProfilePage(
-                    profile: user,
-                  ),
+                  () => ProfilePage(),
                 );
               },
               child: RoundImage(
-                path: user.profileImage,
+                path: "UserModel.photoUrl",
                 width: size,
                 height: size,
                 url: '',
               ),
             ),
-            buildNewBadge(user.isNewUser),
-            buildMuteBadge(isMute),
           ],
         ),
         const SizedBox(
@@ -51,7 +47,7 @@ class RoomProfile extends StatelessWidget {
             buildModeratorBadge(isModerator),
             Expanded(
               child: Text(
-                user.name.split(' ')[0],
+                "user.name.split(' ')[0]",
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
                 style: const TextStyle(

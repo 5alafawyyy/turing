@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:turing/data/models/room.dart';
 import 'package:turing/data/models/user.dart';
 
 Random random = Random();
@@ -57,20 +56,17 @@ dynamic profileData = {
 };
 
 // Room
-List roomData = List.generate(
-  10,
-      (index) => {
-    'title': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit? ❤🏠🏠',
-    "users": List.generate(20, (index) => User.fromJson(userData[index]))
-      ..shuffle(),
-    'speakerCount': 4,
-  },
-);
+// List roomData = List.generate(
+//   10,
+//       (index) => {
+//     'title': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit? ❤🏠🏠',
+//     "users": List.generate(20, (index) => UserModel.fromJson(userData[index]))
+//       ..shuffle(),
+//     'speakerCount': 4,
+//   },
+// );
 
-List<Room> rooms = List.generate(
-  10,
-      (index) => Room.fromJson(roomData[index]),
-);
 
-List<User> users = List.generate(20, (index) => User.fromJson(userData[index]));
-User myProfile = User.fromJson(profileData);
+
+// List<UserModel> users = List.generate(20, (index) => UserModel.fromJson(userData[index]));
+// UserModel myProfile = UserModel.fromJson(profileData);

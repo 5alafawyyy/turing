@@ -1,31 +1,36 @@
-class User {
-  final String name;
-  final String username;
-  final String profileImage;
-  final String? lastAccessTime;
-  final String? followers;
-  final String? following;
-  final bool isNewUser;
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-  User({
-    required this.name,
-    required this.username,
-    required this.profileImage,
-    this.followers,
-    this.following,
-    this.lastAccessTime,
-    required this.isNewUser,
+class UserModel {
+  final String uid;
+  final String email;
+  final String displayName;
+  final String photoUrl;
+
+
+
+  UserModel({
+    required this.uid,
+    required this.email,
+    required this.displayName,
+    required this.photoUrl,
   });
 
-  factory User.fromJson(json) {
-    return User(
-      name: json['name'],
-      username: json['username'],
-      profileImage: json['profileImage'],
-      lastAccessTime: json['lastAccessTime'],
-      followers: json['followers'],
-      following: json['following'],
-      isNewUser: json['isNewUser'],
+  factory UserModel.fromFirestore(
+      DocumentSnapshot<Map<String, dynamic>> snapshot,
+      ) {
+    final data = snapshot.data();
+    return UserModel(
+      displayName: data?['displayName'],
+      photoUrl: data?['photoUrl'],
+      uid: data?['uid'],
+      email: data?['email'],
     );
   }
+
+  // Map<String, dynamic> toFirestore() {
+  //   return {
+  //     if (displayName != null) "displayName": displayName,
+  //     if (photoUrl != null) "photoUrl": photoUrl,
+  //   };
+  // }
 }
