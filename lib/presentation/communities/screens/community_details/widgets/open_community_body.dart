@@ -5,14 +5,15 @@ import 'package:turing/core/widgets/default_button.dart';
 import 'package:turing/presentation/communities/screens/community_details/controllers/community_details_controller.dart';
 import 'package:turing/presentation/communities/screens/community_details/widgets/description_text.dart';
 
+import 'community_activity_body.dart';
+
 CommunityDetailsController controller = Get.put(CommunityDetailsController());
-Widget closedCommunityBody({
+Widget openedCommunityBody({
   required String statusText,
   required int peopleNumber,
   required String description,
 }) =>
     GetBuilder<CommunityDetailsController>(
-      
       builder: (controller) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
@@ -53,12 +54,12 @@ Widget closedCommunityBody({
             ),
             DescriptionTextWidget(text: description),
             defaultButton(
-              text: controller.prefs.getBool("joined") == false ? 'Join community' : 'Pending',
+              text: 'Show activity',
               textColor: kForegroundColor,
               themeColor: kPrimaryColor,
               onPressed: () {
-                controller.join();
-              },
+                controller.enterCommunity();
+                },
             )
           ],
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/default_button.dart';
 import 'package:turing/presentation/communities/screens/create_community/controllers/create_new_community_controller.dart';
@@ -9,89 +10,127 @@ import 'package:turing/presentation/communities/screens/create_community/widgets
 class CreateCommunityViewBody extends StatelessWidget {
   CreateCommunityViewBody({Key? key}) : super(key: key);
 
-  CreateNewCommunityController controller =
-      Get.put(CreateNewCommunityController());
 
   String text = "";
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kBackgroundColor,
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          'Create New Community',
+    return GetBuilder<CreateNewCommunityController>(
+      init: CreateNewCommunityController(),
+      builder: (controller) =>ModalProgressHUD(
+        color: kPrimaryColor,
+        progressIndicator: CircularProgressIndicator(
+            color: kPrimaryColor,
         ),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.clear,
-          ),
-          onPressed: () {
-            Get.back();
-          },
-        ),
-        shadowColor: kForegroundColor,
-      ),
-      body: SingleChildScrollView(
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-        // physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            const PickImage(),
-            const SizedBox(
-              height: 10.0,
+        inAsyncCall: controller.isLoading,
+        child: Scaffold(
+          backgroundColor: kBackgroundColor,
+          appBar: AppBar(
+            centerTitle: true,
+            title: const Text(
+              'Create New Community',
             ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: GetBuilder<CreateNewCommunityController>(
-                  builder: (controller) => Form(
-                    key: controller.formKey,
-                    child: Column(
-                      children: [
-                        customTextFormField(
-                          controller: controller.titleController,
-                          keyboardType: TextInputType.text,
-                          labelText: 'Community Name',
-                          hintText: 'ex. 5allaf Community',
-                          color: kPrimaryColor,
-                          fillColor: kLightColor,
-                          errorColor: itemColor,
-                          maxLine: 2,
-                          validate: controller.validate,
+            leading: IconButton(
+              icon: const Icon(
+                Icons.clear,
+              ),
+              onPressed: () {
+                Get.back();
+              },
+            ),
+            shadowColor: kForegroundColor,
+          ),
+          body: SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            // physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                const PickImage(),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: GetBuilder<CreateNewCommunityController>(
+                      builder: (controller) => Form(
+                        key: controller.formKey,
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  'Opened',
+                                  style: TextStyle(
+                                    color: kPrimaryColor,
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.w600
+                                  ),
+                                ),
+                                Switch(
+                                  value: controller.isSwitch,
+                                  onChanged: controller.changeSwitch,
+                                  activeTrackColor: kForegroundColor,
+                                  activeColor: kPrimaryColor,
+                                ),
+                                Text(
+                                  'Closed',
+                                  style: TextStyle(
+                                      color: kPrimaryColor,
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.w600
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                            customTextFormField(
+                              controller: controller.titleController,
+                              keyboardType: TextInputType.text,
+                              labelText: 'Community Name',
+                              hintText: 'ex. 5allaf Community',
+                              color: kPrimaryColor,
+                              fillColor: kLightColor,
+                              errorColor: itemColor,
+                              maxLine: 2,
+                              validate: controller.validate,
+                            ),
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                            customTextFormField(
+                              controller: controller.descController,
+                              keyboardType: TextInputType.multiline,
+                              labelText: 'Description',
+                              hintText: 'This community is for fourth year in CS ',
+                              color: kPrimaryColor,
+                              fillColor: kLightColor,
+                              errorColor: itemColor,
+                              maxLine: 6,
+                              minLine: 1,
+                              validate: controller.validate,
+                            ),
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                            defaultButton(
+                              text: 'Finish',
+                              textColor: kForegroundColor,
+                              themeColor: kPrimaryColor,
+                              onPressed: controller.createCommunity,
+                            ),
+                          ],
                         ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        customTextFormField(
-                          controller: controller.descController,
-                          keyboardType: TextInputType.multiline,
-                          labelText: 'Description',
-                          hintText: 'This community is for fourth year in CS ',
-                          color: kPrimaryColor,
-                          fillColor: kLightColor,
-                          errorColor: itemColor,
-                          maxLine: 6,
-                          minLine: 1,
-                          validate: controller.validate,
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-                        defaultButton(
-                          text: 'Finish',
-                          textColor: kForegroundColor,
-                          themeColor: kPrimaryColor,
-                          onPressed: controller.createCommunity,
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

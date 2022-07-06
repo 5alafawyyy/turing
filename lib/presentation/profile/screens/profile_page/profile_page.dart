@@ -6,6 +6,9 @@ import 'package:turing/core/widgets/round_image.dart';
 
 class ProfilePage extends StatelessWidget {
   static String id = '/profilePage';
+   String displayName;
+   String photoUrl;
+  ProfilePage ({ required this.displayName, required this.photoUrl });
 
   AuthController controller = Get.put(AuthController());
   @override
@@ -43,7 +46,7 @@ class ProfilePage extends StatelessWidget {
       children: [
         CircleAvatar(
             backgroundImage: NetworkImage(
-          "${AuthController.instance.currentData.photoUrl}",
+              photoUrl,
         ),
         radius: 50.0,
         ),
@@ -51,7 +54,7 @@ class ProfilePage extends StatelessWidget {
           height: 20,
         ),
         Text(
-          "${AuthController.instance.currentData.displayName}",
+          displayName,
           style: const TextStyle(
             fontSize: 25,
             color: kPrimaryColor,
@@ -123,7 +126,7 @@ class ProfilePage extends StatelessWidget {
       children: [
         CircleAvatar(
           backgroundImage: NetworkImage(
-            "${AuthController.instance.currentData.photoUrl}",
+            photoUrl,
           ),
         ),
         const SizedBox(

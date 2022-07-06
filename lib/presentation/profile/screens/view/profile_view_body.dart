@@ -47,7 +47,8 @@ class ProfileViewBody extends StatelessWidget {
                 icon: "assets/icons/settings.png",
                 onPressed: () {
                   Get.to(() => const SettingView(),
-                    transition: Transition.leftToRight,
+                    transition: Transition.rightToLeftWithFade,
+                    duration: const Duration(milliseconds: 500),
                   );
                 },
               ),

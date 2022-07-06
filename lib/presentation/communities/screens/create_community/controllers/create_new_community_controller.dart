@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'package:turing/controllers/communities_controller.dart';
 import 'package:turing/presentation/communities/screens/create_community/widgets/image_from_gallery.dart';
 
 enum ImageSourceType { gallery, camera }
@@ -76,17 +79,53 @@ class CreateNewCommunityController extends GetxController {
 
   // Menu Opener
   dynamic state;
+
   void _onTap() {
     state = _menuKey.currentState;
     state.showButtonMenu();
   }
 
   get menuKey => _menuKey;
+
   get onTap => _onTap;
+
+
+  // upload image to firebase storage
+  Future<String> uploadFile(File image) async {
+    String downloadURL;
+    String communityId = DateTime
+        .now()
+        .millisecondsSinceEpoch
+        .toString();
+    Reference ref = FirebaseStorage.instance
+        .ref()
+        .child("communitiesPhotos")
+        .child("community_$communityId.jpg");
+
+    await ref.putFile(image);
+    downloadURL = await ref.getDownloadURL();
+    return downloadURL;
+  }
+
+  bool isLoading = false;
+
+  String? url;
+
+  uploadToFirebase() async {
+    url = await uploadFile(_image);
+    update();
+  }
+
 
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
 
+  bool isSwitch = false;
+
+  void changeSwitch(isSwitched){
+    isSwitch = isSwitched;
+    update();
+  }
 
   String? validate(String? value) {
     if (value == null || value.isEmpty) {
@@ -94,12 +133,28 @@ class CreateNewCommunityController extends GetxController {
     }
     return null;
   }
-  GlobalKey<FormState> formKey = GlobalKey();
-  void createCommunity() {
-    if (formKey.currentState!.validate()) {
 
+  GlobalKey<FormState> formKey = GlobalKey();
+
+  void createCommunity() async {
+    if (formKey.currentState!.validate()) {
+      isLoading = true;
+      update();
+      print(url);
+      url == null ? await Duration(milliseconds: 500) : await uploadToFirebase();
+      CommunitiesControllerCloud.instance.communitiesRef.add({
+        'titleText': titleController.text,
+        'description': descController.text,
+        'imgUrl': url == null ?  'https://firebasestorage.googleapis.com/v0/b/turing-d92dd.appspot.com/o/communitiesPhotos%2Fno-image.png?alt=media&token=7108be3d-34ed-4929-9116-40c0c78c25e6' : url,
+        'isOpened': isSwitch,
+        'noMembers': 0,
+      });
+
+      isLoading = false;
       Get.back();
+
+      update();
     }
-    update();
   }
 }
+

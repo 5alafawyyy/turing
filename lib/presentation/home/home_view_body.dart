@@ -65,7 +65,7 @@ class HomeViewBody extends StatelessWidget {
                     height: 15,
                   ),
                   // Groups List
-                  const CommunitiesList(),
+                  CommunitiesList(),
                 ],
               ),
             ),

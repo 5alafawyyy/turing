@@ -37,8 +37,8 @@ class RoomPage extends StatelessWidget {
             const Spacer(),
             GestureDetector(
               onTap: () {
-                Get.to(() =>ProfilePage(),
-                );
+                // Get.to(() =>ProfilePage(),
+                // );
               },
               child: RoundImage(
                 path: "myProfile.profileImage",

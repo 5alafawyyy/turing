@@ -15,7 +15,7 @@ class ProfilePic extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async{
-        Get.to(() => ProfilePage(),
+        Get.to(() => ProfilePage(displayName: AuthController.instance.currentData.displayName, photoUrl: AuthController.instance.currentData.photoUrl),
             transition: Transition.rightToLeftWithFade,
         );
       },
