@@ -26,6 +26,7 @@ import 'package:turing/presentation/rooms/screens/view/rooms_view.dart';
 import 'package:turing/presentation/profile/screens/profile_page/profile_page.dart';
 import 'package:turing/presentation/setting/setting_view.dart';
 import 'package:turing/presentation/splash/splash_view.dart';
+import 'controllers/communities_controller.dart';
 import 'presentation/communities/screens/create_community/create_new_community_view.dart';
 
 
@@ -37,6 +38,7 @@ void main() async {
   await Firebase.initializeApp().then((value) {
     Get.put(AuthController());
     Get.put(ArticlesController());
+    Get.put(CommunitiesControllerCloud());
   });
 
 
@@ -74,7 +76,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: RoomsView.id, page: ()=>  const RoomsView()),
         GetPage(name: ArticlesView.id, page: ()=>  const ArticlesView()),
         GetPage(name: ProfileView.id, page: ()=>  const ProfileView()),
-        GetPage(name: ProfilePage.id, page: () => ProfilePage()),
+        // GetPage(name: ProfilePage.id, page: () => ProfilePage()),
         GetPage(name: SettingView.id, page: ()=>  const SettingView()),
         GetPage(name: CommunitiesView.id, page: ()=>  const CommunitiesView()),
         GetPage(name: CommunityPageDetailsView.id, page: ()=> const CommunityPageDetailsView()),

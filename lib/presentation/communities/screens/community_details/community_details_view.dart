@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:turing/presentation/communities/screens/community_details/community_details_view_body.dart';
 
 
@@ -8,6 +9,6 @@ class CommunityPageDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CommunityPageDetailsViewBody();
+    return CommunityPageDetailsViewBody(communityId: Get.arguments['communityId']);
   }
 }

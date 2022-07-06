@@ -22,25 +22,20 @@ class IconImageAndText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Row(
-        children:
-        [
-          ImageIcon(
-            image,
-            color: iconColor,
-            size: iconSize,
-          ),
-          const SizedBox(width: 5,),
-          BodyText(
-            text: text,
-            size: textSize,
+    return TextButton.icon(
+        onPressed: onTap,
+        icon: ImageIcon(
+          image,
+          color: iconColor,
+          size: iconSize,
+        ),
+        label: Text(
+          text,
+          style: TextStyle(
+            fontSize: textSize,
             color: color,
           ),
-
-        ],
-      ),
+        ),
     );
   }
 }

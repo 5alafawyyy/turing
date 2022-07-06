@@ -25,9 +25,9 @@ class RoomProfile extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Get.to(
-                  () => ProfilePage(),
-                );
+                // Get.to(
+                //   () => ProfilePage(),
+                // );
               },
               child: RoundImage(
                 path: "UserModel.photoUrl",

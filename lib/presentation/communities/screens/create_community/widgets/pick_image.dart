@@ -10,6 +10,7 @@ class PickImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CreateNewCommunityController>(
+      init: CreateNewCommunityController(),
       builder: (controller) => GestureDetector(
         onTap:  controller.onTap,
         child: Container(
