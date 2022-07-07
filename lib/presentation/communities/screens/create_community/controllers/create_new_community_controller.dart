@@ -120,7 +120,7 @@ class CreateNewCommunityController extends GetxController {
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
 
-  bool isSwitch = false;
+  bool isSwitch = true;
 
   void changeSwitch(isSwitched){
     isSwitch = isSwitched;

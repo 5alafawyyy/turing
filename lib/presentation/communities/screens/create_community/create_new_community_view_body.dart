@@ -61,7 +61,7 @@ class CreateCommunityViewBody extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
-                                  'Opened',
+                                  'Closed',
                                   style: TextStyle(
                                     color: kPrimaryColor,
                                     fontSize: 15.0,
@@ -75,7 +75,7 @@ class CreateCommunityViewBody extends StatelessWidget {
                                   activeColor: kPrimaryColor,
                                 ),
                                 Text(
-                                  'Closed',
+                                  'Opened',
                                   style: TextStyle(
                                       color: kPrimaryColor,
                                       fontSize: 15.0,

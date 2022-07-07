@@ -7,6 +7,7 @@ class BodyText extends StatelessWidget{
   TextOverflow overflow;
   int maxLines;
   double textHeight;
+  TextAlign textAlign;
   BodyText(
       {
         Key? key,
@@ -16,6 +17,7 @@ class BodyText extends StatelessWidget{
         this.overflow = TextOverflow.ellipsis,
         this.maxLines = 2,
         this.textHeight = 1.4,
+        this.textAlign = TextAlign.start
       }) : super(key: key);
 
   @override
@@ -23,6 +25,7 @@ class BodyText extends StatelessWidget{
     return Text(
       text,
       overflow: overflow,
+      textAlign: textAlign,
       maxLines: maxLines,
       style: TextStyle(
         height: textHeight,

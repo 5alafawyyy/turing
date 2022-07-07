@@ -49,6 +49,7 @@ dependencies:
   flutter_signin_button: ^2.0.0
   cloud_firestore: ^3.2.1
   firebase_storage: ^10.3.1
+  jitsi_meet: ^4.0.0
 
 
 dev_dependencies:

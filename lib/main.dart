@@ -40,7 +40,7 @@ void main() async {
     Get.put(ArticlesController());
     Get.put(CommunitiesControllerCloud());
   });
-
+  await AuthController.instance.getUserData();
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
   onboardScreen = prefs.getInt("onboardScreen");
