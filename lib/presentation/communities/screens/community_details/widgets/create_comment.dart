@@ -6,7 +6,6 @@ import 'package:turing/presentation/communities/screens/community_details/widget
 import '../../../../../controllers/authController.dart';
 
 Widget createNewComment (){
-  CommunityDetailsController controller = Get.put(CommunityDetailsController());
   return Container(
     color: kLightColor.withOpacity(.8),
     padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15),
@@ -43,7 +42,7 @@ Widget createNewComment (){
                   ),
                   IconButton(
                     onPressed: () async{
-                      controller.createComment();
+                      controller.createComment('${Get.arguments['id']}');
                     },
                     icon: const ImageIcon(
                       AssetImage('assets/icons/send.png'),

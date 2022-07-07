@@ -17,7 +17,7 @@ Widget communityPostItem({
   required bool showReacts,
   bool showComment = true,
   Color color = kForegroundColor,
-  required dynamic Function() likePressed,
+  required dynamic Function() commentPressed,
   // required AssetImage likeImage ,
 }) {
   return GestureDetector(
@@ -121,9 +121,7 @@ Widget communityPostItem({
                         iconColor: kPrimaryColor,
                         iconSize: 20.0,
                         textSize: 15.0,
-                        onTap: () {
-                          //TODO: add comment
-                        },
+                        onTap: commentPressed,
                       )
                     : const SizedBox(
                         height: 0.0,

@@ -23,12 +23,10 @@ class HomeViewBody extends StatelessWidget {
                   const SizedBox(
                     height: 15,
                   ),
-                  // Rooms Slider Section with Dots Indicator
-                  const RoomsSlider(),
+                  RoomsSlider(), // Rooms Slider Section with Dots Indicator
                   const SizedBox(
                     height: 5,
                   ),
-                  // Popular text
                   Container(
                     margin: const EdgeInsets.only(left: 20),
                     child: Row(
@@ -60,12 +58,11 @@ class HomeViewBody extends StatelessWidget {
                         )
                       ],
                     ),
-                  ),
+                  ), // Popular text
                   const SizedBox(
                     height: 15,
                   ),
-                  // Groups List
-                  CommunitiesList(),
+                                    CommunitiesList(),// Groups List
                 ],
               ),
             ),

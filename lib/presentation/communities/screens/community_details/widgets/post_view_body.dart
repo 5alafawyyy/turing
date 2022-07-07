@@ -11,7 +11,7 @@ class PostViewBody extends StatelessWidget {
 
 
 
-   final commentRef = CommunityDetailsController.instance.postRefComments;
+   final commentRef = CommunityDetailsController.instance.postRefComments.orderBy('createdAt', descending: true);
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -45,7 +45,7 @@ class PostViewBody extends StatelessWidget {
                     body: '${Get.arguments['body']}',
                     noLikes: Get.arguments['noLikes'],
                     noComments: Get.arguments['noComments'],
-                    likePressed: controller.likePressed,
+                    commentPressed: controller.likePressed,
                   ),
                 ),
               ),
