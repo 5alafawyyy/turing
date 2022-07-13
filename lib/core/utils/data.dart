@@ -1,58 +1,55 @@
-import 'dart:math';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:turing/controllers/authController.dart';
 import 'package:turing/data/models/user.dart';
 
-Random random = Random();
 
-String dummyText =
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit? ❤🏠🏠';
 
-// User
-List names = [
-  'Ahmed Khallaf',
-  'Mohammed El-Kholy',
-  'Wahdan',
-  'Momo Abaset',
-  'Badawy',
-  'Ahmed Taher',
-  'Agamy',
-  'Samir',
-  'Mamdouh',
-  'Jimmy',
-  'Abdelwahab',
-  'Yahia Emam',
-  'Hisham',
-  'Mohammed Foaad',
-  'Mostafa',
-  'Khalil',
-  'Ahmed Khallaf',
-  'Momo Abaset',
-  'Badawy',
-  'Ahmed Taher',
-];
+final usersCollectionRef = FirebaseFirestore.instance.collection("userData");
 
-List userData = List.generate(
-  20,
-      (index) => {
-    'name': names[index],
-    'username': '@${names[index].toString().split(' ')[0].toLowerCase()}',
-    'profileImage': 'assets/images/cat${index % 10 + 1}.jpg',
-    'followers': '1k',
-    'following': '1',
-    'lastAccessTime': '${index + 10}m',
-    'isNewUser': random.nextBool(),
-  },
-);
+
+// // User
+// List names = [
+//   'Ahmed Khallaf',
+//   'Mohammed El-Kholy',
+//   'Wahdan',
+//   'Momo Abaset',
+//   'Badawy',
+//   'Ahmed Taher',
+//   'Agamy',
+//   'Samir',
+//   'Mamdouh',
+//   'Jimmy',
+//   'Abdelwahab',
+//   'Yahia Emam',
+//   'Hisham',
+//   'Mohammed Foaad',
+//   'Mostafa',
+//   'Khalil',
+//   'Ahmed Khallaf',
+//   'Momo Abaset',
+//   'Badawy',
+//   'Ahmed Taher',
+// ];
+
+// List userData = List.generate(
+//   20,
+//       (index) => {
+//     'name': names[index],
+//     'username': '@${names[index].toString().split(' ')[0].toLowerCase()}',
+//     'profileImage': 'assets/images/cat${index % 10 + 1}.jpg',
+//     'followers': '0',
+//     'following': '0',
+//     'lastAccessTime': '${index + 10}m',
+//     'isNewUser': random.nextBool(),
+//   },
+// );
 
 // MyProfile
 dynamic profileData = {
-  'name': 'Ahmed Khallaf',
-  'username': '@5allaf',
-  'profileImage': 'assets/images/ahmedkhallaf.jpeg',
-  'followers': '1k',
-  'following': '1',
+  'name': AuthController.instance.currentData.displayName,
+  'username': AuthController.instance.currentData.uid,
+  'profileImage': AuthController.instance.currentData.photoUrl,
   'lastAccessTime': '0m',
-  'isNewUser': random.nextBool(),
 };
 
 // Room
@@ -68,5 +65,5 @@ dynamic profileData = {
 
 
 
-// List<UserModel> users = List.generate(20, (index) => UserModel.fromJson(userData[index]));
-// UserModel myProfile = UserModel.fromJson(profileData);
+// List<UserModel> users = List.generate(20, (index) => UserModel.fromFirestore(userData[index]));
+UserModel myProfile = UserModel.fromFirestore(profileData);

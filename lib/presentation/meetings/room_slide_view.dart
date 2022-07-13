@@ -23,7 +23,7 @@ class RoomSlideView extends GetView<MeetingController> {
           },
         ),
         title: Text(
-          '${roomPages[index].title}',
+          '${roomPages[index]['title']}',
           style: TextStyle(color: Colors.black.withOpacity(0.7)),
         ),
         centerTitle: true,
@@ -38,7 +38,7 @@ class RoomSlideView extends GetView<MeetingController> {
             width: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: roomPages[index].image,
+                image:NetworkImage( roomPages[index]['image']),
                 fit: BoxFit.cover,
               ),
             ),
@@ -54,7 +54,7 @@ class RoomSlideView extends GetView<MeetingController> {
               child: SingleChildScrollView(
                 child: BodyText(
                   color: Colors.black.withOpacity(0.7),
-                  text: roomPages[index].body,
+                  text: roomPages[index]['body'],
                   size: 17,
                   overflow: TextOverflow.visible,
                   maxLines: 30,
@@ -68,14 +68,13 @@ class RoomSlideView extends GetView<MeetingController> {
           ),
           ElevatedButton(
             onPressed: () {
-              //TODO: Join Function
-              MeetingController.instance.createRoom(
+              MeetingController.instance.createMeeting(
                 isAudioMuted: true,
                 isVideoMuted: true,
-                roomName: roomPages[index].title,
+                roomName: roomPages[index]['title'],
               );
             },
-            child: Text('Join Room 🤞'),
+            child: Text('Join Meeting 🤞'),
             style: ElevatedButton.styleFrom(
               primary: kPrimaryColor,
               padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 10.0),

@@ -27,10 +27,10 @@ class UserModel {
     );
   }
 
-  // Map<String, dynamic> toFirestore() {
-  //   return {
-  //     if (displayName != null) "displayName": displayName,
-  //     if (photoUrl != null) "photoUrl": photoUrl,
-  //   };
-  // }
+  Map<String, dynamic> toFirestore() {
+    return {
+      if (displayName != null) "displayName": displayName,
+      if (photoUrl != null) "photoUrl": photoUrl,
+    };
+  }
 }

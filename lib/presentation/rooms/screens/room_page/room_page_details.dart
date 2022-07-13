@@ -1,17 +1,94 @@
+import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:turing/core/utils/appId.dart';
 import 'package:turing/core/utils/data.dart';
 import 'package:turing/core/utils/styles.dart';
+import 'package:turing/core/utils/temp_token.dart';
 import 'package:turing/core/widgets/round_button.dart';
 import 'package:turing/core/widgets/round_image.dart';
-import 'package:turing/data/models/user.dart';
 import 'package:turing/presentation/profile/screens/profile_page/profile_page.dart';
 import 'package:turing/presentation/rooms/screens/room_page/widgets/room_profile.dart';
 import 'package:turing/presentation/rooms/screens/video_call/video_call.dart';
 
-class RoomPage extends StatelessWidget {
+import '../../../../controllers/authController.dart';
+import '../../../../core/utils/channel.dart';
+import '../../../../data/models/room_model.dart';
 
+class RoomPage extends StatefulWidget {
 
+  final Room room;
+  final ClientRole role;
+
+  const RoomPage({ required this.room, required this.role}) ;
+
+  @override
+  State<RoomPage> createState() => _RoomPageState();
+}
+
+class _RoomPageState extends State<RoomPage> {
+  final List _users = [];
+
+  bool muted = false;
+  late RtcEngine _engine;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize Agora SDK
+    initialize();
+  }
+
+  @override
+  void dispose() {
+    // Clear users
+    _users.clear();
+    // Destroy sdk
+    _engine.leaveChannel();
+    _engine.destroy();
+    super.dispose();
+  }
+
+  /// Create Agora SDK instance and initialize
+  Future<void> initialize() async {
+    await _initAgoraRtcEngine();
+    _addAgoraEventHandlers();
+    await _engine.joinChannel(Token, channelName, null, 0);
+  }
+
+  Future<void> _initAgoraRtcEngine() async {
+    _engine = await RtcEngine.create(appId);
+    await _engine.enableAudio();
+    await _engine.setChannelProfile(ChannelProfile.LiveBroadcasting);
+    await _engine.setClientRole(widget.role);
+  }
+
+  /// Add Agora event handlers
+
+  void _addAgoraEventHandlers() {
+    _engine.setEventHandler(RtcEngineEventHandler(
+      error: (code) {
+        setState(() {
+          print('onError: $code');
+        });
+      },
+      joinChannelSuccess: (channel, uid, elapsed) {
+        print('onJoinChannel: $channel, uid: $uid');
+      },
+      leaveChannel: (stats) {
+        setState(() {
+          print('onLeaveChannel');
+          _users.clear();
+        });
+      },
+      userJoined: (uid, elapsed) {
+        print('userJoined: $uid');
+        setState(() {
+          _users.add(uid);
+        });
+      },
+    ));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,11 +114,14 @@ class RoomPage extends StatelessWidget {
             const Spacer(),
             GestureDetector(
               onTap: () {
-                // Get.to(() =>ProfilePage(),
-                // );
+                Get.to(() =>ProfilePage(
+                  displayName: 'AuthController.instance.currentData.displayName',
+                  photoUrl: 'AuthController.instance.currentData.photoUrl',
+                ),
+                );
               },
               child: RoundImage(
-                path: "myProfile.profileImage",
+                url: AuthController.instance.currentData.photoUrl,
                 width: 40,
                 height: 40,
               ),
@@ -67,12 +147,12 @@ class RoomPage extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  buildTitle(),
+                  buildTitle(widget.room.title),
                   const SizedBox(
                     height: 30,
                   ),
-                  // buildSpeakers(room.users.sublist(0, room.speakerCount)),
-                  // buildOthers(room.users.sublist(room.speakerCount)),
+                  buildSpeakers(widget.room.users.sublist(0, widget.room.speakerCount)),
+                  buildOthers(widget.room.users.sublist(widget.room.speakerCount)),
                 ],
               ),
             ),
@@ -86,14 +166,14 @@ class RoomPage extends StatelessWidget {
     );
   }
 
-  Widget buildTitle() {
+  Widget buildTitle(String title) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Flexible(
           child: Text(
-            "title",
+            title,
             style: const TextStyle(
               color: kPrimaryColor,
               fontSize: 20,
@@ -101,11 +181,18 @@ class RoomPage extends StatelessWidget {
             ),
           ),
         ),
+        Container(
+          child: IconButton(
+            onPressed: () {},
+            iconSize: 30,
+            icon: Icon(Icons.more_horiz),
+          ),
+        ),
       ],
     );
   }
 
-  Widget buildSpeakers(List<UserModel> users) {
+  Widget buildSpeakers(List<User> users) {
     return GridView.builder(
       shrinkWrap: true,
       physics: const ScrollPhysics(),
@@ -125,7 +212,7 @@ class RoomPage extends StatelessWidget {
     );
   }
 
-  Widget buildOthers(List<UserModel> users) {
+  Widget buildOthers(List<User> users) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -166,13 +253,12 @@ class RoomPage extends StatelessWidget {
     return Container(
       child:RoundButton(
         onPressed: () {
-          // Get.to(() => VideoCall());
-          //TODO: Join Room
+          Get.back();
           // Get.to(() => VideoCall());
         },
         color: kPrimaryColor,
         child: const Text(
-          '✌️ Join Room',
+          'Leave Quietly 👋',
           style: TextStyle(
             color: kWhiteColor,
             fontSize: 15,
