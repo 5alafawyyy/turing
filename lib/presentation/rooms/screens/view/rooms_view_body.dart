@@ -1,15 +1,18 @@
+import 'package:agora_rtc_engine/rtc_engine.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:turing/controllers/authController.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/round_button.dart';
 import 'package:turing/presentation/rooms/controllers/room_controller.dart';
 import 'package:turing/presentation/rooms/screens/room_page/room_page_details.dart';
 import 'package:turing/presentation/rooms/widgets/new_room_text_form_field.dart';
 import 'package:turing/presentation/rooms/widgets/room_card.dart';
-
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
-
+import '../../../../core/utils/data.dart';
+import '../../../../data/models/room_model.dart';
 
 class RoomsViewBody extends StatelessWidget {
   RoomController controller = Get.put(RoomController());
@@ -24,60 +27,101 @@ class RoomsViewBody extends StatelessWidget {
     controller.refreshController.loadComplete();
   }
 
+  User myProfile = User.fromJson(profileData);
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
-        SmartRefresher(
-          enablePullDown: true,
-          controller: controller.refreshController,
-          onRefresh: _onRefresh,
-          onLoading: _onLoading,
-          child: ListView.builder(
-            padding: const EdgeInsets.only(
-              // bottom: 80,
-              left: 15,
-              right: 15,
-            ),
-            itemBuilder: (context, index) {
-
-              return buildRoomCard();
-            },
-            itemCount: 1,
-          ),
+        // Making a StreamBuilder to listen to changes in real time
+        StreamBuilder<QuerySnapshot>(
+          stream: controller.collection.snapshots(),
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            // Handling errors from firebase
+            if (snapshot.hasError) return Text('Error: ${snapshot.error}');
+            return snapshot.hasData
+                ?
+            SmartRefresher(
+              enablePullDown: true,
+              controller: controller.refreshController,
+              onRefresh: _onRefresh,
+              onLoading: _onLoading,
+              child: ListView(
+                children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                  return Dismissible(
+                    key: ObjectKey(document.data),
+                    onDismissed: (direction) {
+                      controller.collection.doc(document.id).delete();
+                    },
+                    child: buildRoomCard( Room.fromJson(document),)
+                  );
+                }).toList(),
+              ),
+            )
+            // Display if still loading data
+                :
+            Center(
+              child: CircularProgressIndicator(),
+            );
+          },
         ),
-        buildStartRoomButton(context),
+        buildStartRoomButton(),
+        // SmartRefresher(
+        //   enablePullDown: true,
+        //   controller: controller.refreshController,
+        //   onRefresh: _onRefresh,
+        //   onLoading: _onLoading,
+        //   child: ListView.builder(
+        //     padding: const EdgeInsets.only(
+        //       // bottom: 80,
+        //       left: 15,
+        //       right: 15,
+        //     ),
+        //     itemBuilder: (context, index) {
+        //
+        //       return buildRoomCard(Room.fromJson(document),);
+        //     },
+        //     itemCount: 1,
+        //   ),
+        // ),
       ],
     );
   }
 
-  Widget buildRoomCard() {
+  Widget buildRoomCard(Room room) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
+        await Permission.microphone.request();
+        print(AuthController.instance.currentData.photoUrl);
         Get.bottomSheet(
-          RoomPage(),
+          RoomPage(
+            room: room,
+            role: ClientRole.Audience, // Pass user role
+          ),
           enableDrag: true,
           backgroundColor: kLightColor,
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(15),
-                topRight: Radius.circular(15),
-              )),
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15),
+          )),
           clipBehavior: Clip.antiAlias,
-          // isScrollControlled: true,
+          isScrollControlled: true,
         );
       },
       child: Container(
         margin: const EdgeInsets.symmetric(
           vertical: 10,
+          horizontal: 15,
         ),
-        child: RoomCard(),
+        child: RoomCard(
+          room: room,
+        ),
       ),
     );
   }
 
-  Widget buildStartRoomButton(BuildContext context) {
+  Widget buildStartRoomButton() {
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       child: RoundButton(
@@ -153,8 +197,11 @@ class RoomsViewBody extends StatelessWidget {
                     ),
                     RoundButton(
                       color: kSecondaryColor,
-                      onPressed: (){
-                        controller.createRoom();
+                      onPressed: () async {
+                        await controller.createRoom();
+                        // Launch user microphone permission
+                        await Permission.microphone.request();
+                        Get.back();
                       },
                       text: '🎉 Let\'s go',
                     )

@@ -5,17 +5,21 @@ import 'package:turing/core/widgets/round_image.dart';
 import 'package:turing/data/models/user.dart';
 import 'package:turing/presentation/profile/screens/profile_page/profile_page.dart';
 
+import '../../../../../data/models/room_model.dart';
+
 class RoomProfile extends StatelessWidget {
-  final UserModel user;
+  final User user;
   final double size;
   final bool isMute;
   final bool isModerator;
 
   const RoomProfile(
-      {required this.user,
-      required this.size,
-      this.isMute = false,
-      this.isModerator = false});
+      {
+        required this.user,
+        required this.size,
+        this.isMute = false,
+        this.isModerator = false
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +29,18 @@ class RoomProfile extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                // Get.to(
-                //   () => ProfilePage(),
-                // );
+                Get.to(
+                  () => ProfilePage(
+                    displayName: user.name,
+                    photoUrl: user.profileImage,
+                  ),
+                );
               },
               child: RoundImage(
-                path: "UserModel.photoUrl",
+                path: 'assets/images/profile.png',
                 width: size,
                 height: size,
-                url: '',
+                url: user.profileImage,
               ),
             ),
           ],
@@ -47,7 +54,7 @@ class RoomProfile extends StatelessWidget {
             buildModeratorBadge(isModerator),
             Expanded(
               child: Text(
-                "user.name.split(' ')[0]",
+                user.name.split(' ')[0],
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
                 style: const TextStyle(

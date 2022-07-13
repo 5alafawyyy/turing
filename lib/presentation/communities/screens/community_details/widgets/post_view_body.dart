@@ -28,84 +28,86 @@ class PostViewBody extends StatelessWidget {
           centerTitle: true,
           elevation: 0,
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                color: kLightColor,
-                padding: const EdgeInsets.all(8.0),
-                child: GetBuilder<CommunityDetailsController>(
-                  init: CommunityDetailsController(),
-                  builder: (controller) => communityPostItem(
-                    color: kLightColor,
-                    showReacts: false,
-                    showComment: false,
-                    displayName: '${Get.arguments['displayName']}',
-                    photoUrl: '${Get.arguments['photoUrl']}',
-                    body: '${Get.arguments['body']}',
-                    noLikes: Get.arguments['noLikes'],
-                    noComments: Get.arguments['noComments'],
-                    commentPressed: controller.likePressed,
-                  ),
+        body: Column(
+          children: [
+            Container(
+              color: kLightColor,
+              padding: const EdgeInsets.all(8.0),
+              child: GetBuilder<CommunityDetailsController>(
+                init: CommunityDetailsController(),
+                builder: (controller) => communityPostItem(
+                  color: kLightColor,
+                  showReacts: false,
+                  showComment: false,
+                  displayName: '${Get.arguments['displayName']}',
+                  photoUrl: '${Get.arguments['photoUrl']}',
+                  body: '${Get.arguments['body']}',
+                  noLikes: Get.arguments['noLikes'],
+                  noComments: Get.arguments['noComments'],
+                  commentPressed: controller.likePressed,
                 ),
               ),
-              const SizedBox(
-                height: 2.0,
+            ),
+            const SizedBox(
+              height: 2.0,
+            ),
+            createNewComment(),
+            const SizedBox(
+              height: 5.0,
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: StreamBuilder(
+                  stream: commentRef.snapshots(),
+                  builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                    if (snapshot.hasError) {
+                      return Center(child: Text('Some error happened'));
+                    }
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(
+                        child: const CircularProgressIndicator(
+                          color: kPrimaryColor,
+                        ),
+                      );
+                    }
+                    if (snapshot.hasData) {
+                      return Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: ListView.separated(
+                          itemBuilder: (BuildContext context, int index) {
+                            return Container(
+                              color: itemColor.withOpacity(0.2),
+                              child: commentOfPost(
+                                  displayName: snapshot.data.docs[index]
+                                      .data()['displayName']
+                                      .toString(),
+                                  photoUrl: snapshot.data.docs[index].data()['photoUrl'],
+                                  body: snapshot.data.docs[index].data()['body'].toString(),
+                              ),
+                            );
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const SizedBox(
+                              height: 10.0,
+                            );
+                          },
+                          itemCount: snapshot.data.docs.length,
+                          keyboardDismissBehavior:
+                          ScrollViewKeyboardDismissBehavior.onDrag,
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                        ),
+                      );
+                    } else {
+                      return Center(child: Text('Failed to load articles'));
+                    }
+                  },
+                ),
               ),
-              createNewComment(),
-              const SizedBox(
-                height: 5.0,
-              ),
-              StreamBuilder(
-                stream: commentRef.snapshots(),
-                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                  if (snapshot.hasError) {
-                    return Center(child: Text('Some error happened'));
-                  }
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
-                      child: const CircularProgressIndicator(
-                        color: kPrimaryColor,
-                      ),
-                    );
-                  }
-                  if (snapshot.hasData) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.0),
-                      child: ListView.separated(
-                        itemBuilder: (BuildContext context, int index) {
-                          return Container(
-                            color: itemColor.withOpacity(0.2),
-                            child: commentOfPost(
-                                displayName: snapshot.data.docs[index]
-                                    .data()['displayName']
-                                    .toString(),
-                                photoUrl: snapshot.data.docs[index].data()['photoUrl'],
-                                body: snapshot.data.docs[index].data()['body'].toString(),
-                            ),
-                          );
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return const SizedBox(
-                            height: 10.0,
-                          );
-                        },
-                        itemCount: snapshot.data.docs.length,
-                        keyboardDismissBehavior:
-                        ScrollViewKeyboardDismissBehavior.onDrag,
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                      ),
-                    );
-                  } else {
-                    return Center(child: Text('Failed to load articles'));
-                  }
-                },
-              ),
+            ),
 
 
-            ],
-          ),
+          ],
         ),
       ),
     );

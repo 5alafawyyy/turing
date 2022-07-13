@@ -23,15 +23,14 @@ import 'package:turing/presentation/profile/screens/edit_profile/edit_profile.da
 import 'package:turing/presentation/profile/screens/notification/notification.dart';
 import 'package:turing/presentation/profile/screens/view/profile_view.dart';
 import 'package:turing/presentation/rooms/screens/view/rooms_view.dart';
-import 'package:turing/presentation/profile/screens/profile_page/profile_page.dart';
 import 'package:turing/presentation/setting/setting_view.dart';
 import 'package:turing/presentation/splash/splash_view.dart';
 import 'controllers/communities_controller.dart';
+import 'controllers/meeting_controller.dart';
 import 'presentation/communities/screens/create_community/create_new_community_view.dart';
 
 
-int? onboardScreen;
-// bool? isLoginSuccess;
+int? onboardScreen = 0;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,12 +38,12 @@ void main() async {
     Get.put(AuthController());
     Get.put(ArticlesController());
     Get.put(CommunitiesControllerCloud());
+    Get.put(MeetingController());
   });
   await AuthController.instance.getUserData();
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
   onboardScreen = prefs.getInt("onboardScreen");
-  // isLoginSuccess = prefs.getBool('loginSuccess');
   await prefs.setInt("onboardScreen", 1);
 
 

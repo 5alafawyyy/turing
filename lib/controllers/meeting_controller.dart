@@ -4,28 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 
-class MeetingController extends GetxController{
+import '../data/models/static_room_data.dart';
+
+class MeetingController extends GetxController {
   static final MeetingController instance = MeetingController();
 
   @override
-  void onInit(){
+  void onInit() {
     super.onInit();
     JitsiMeet.addListener(JitsiMeetingListener(
         onConferenceWillJoin: _onConferenceWillJoin,
         onConferenceJoined: _onConferenceJoined,
         onConferenceTerminated: _onConferenceTerminated,
         onError: _onError));
+
+    getStaticRoomData();
   }
 
   @override
-  void onClose(){
+  void onClose() {
     super.onClose();
     JitsiMeet.removeAllListeners();
   }
-
-
-
-
 
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -33,26 +33,35 @@ class MeetingController extends GetxController{
   Stream<QuerySnapshot<Map<String, dynamic>>> get roomsHistory => _fireStore
       .collection('userData')
       .doc(_auth.currentUser!.uid)
-      .collection('rooms')
+      .collection('staticRoomsHistory')
       .snapshots();
 
+  // get static room from firebase fireStore
+
+  CollectionReference roomRef = FirebaseFirestore.instance.collection('staticRooms');
+  getStaticRoomData() async {
+    QuerySnapshot querySnapshot = await roomRef.get();
+    roomPages.clear();
+    querySnapshot.docs.forEach((element) {
+      roomPages.add(element.data());
+    });
+    update();
+  }
   void addToRoomHistory(String roomName) async {
     try {
       await _fireStore
           .collection('userData')
           .doc(_auth.currentUser!.uid)
-          .collection('rooms')
+          .collection('staticRoomsHistory')
           .add({
         'roomsName': roomName,
         'createdAt': DateTime.now(),
       });
 
-      await _fireStore
-          .collection('rooms')
-          .add({
+      await _fireStore.collection('staticRoomsHistory').add({
         'roomsName': roomName,
         'createdBy': _auth.currentUser!.uid,
-        'displayName':_auth.currentUser!.displayName,
+        'displayName': _auth.currentUser!.displayName,
         'photoUrl': _auth.currentUser!.photoURL,
         'createdAt': DateTime.now(),
       });
@@ -61,13 +70,12 @@ class MeetingController extends GetxController{
     }
   }
 
-
-  void createRoom({
+  void createMeeting({
     required String roomName,
     required bool isAudioMuted,
     required bool isVideoMuted,
     String userName = '',
-  }) async{
+  }) async {
     try {
       Map<FeatureFlagEnum, bool> featureFlags = {
         FeatureFlagEnum.WELCOME_PAGE_ENABLED: false,
@@ -78,8 +86,8 @@ class MeetingController extends GetxController{
         room: roomName,
       )
         ..userDisplayName = _auth.currentUser?.displayName
-        ..userEmail =  _auth.currentUser?.email
-        ..userAvatarURL =  _auth.currentUser?.photoURL
+        ..userEmail = _auth.currentUser?.email
+        ..userAvatarURL = _auth.currentUser?.photoURL
         ..audioMuted = isAudioMuted
         ..videoMuted = isVideoMuted;
 
@@ -89,13 +97,6 @@ class MeetingController extends GetxController{
     } catch (error) {
       print("error: $error");
     }
-
-
-
-
-
-
-
 
     /*
   bool? isAudioOnly = true;
@@ -116,24 +117,6 @@ class MeetingController extends GetxController{
       update();
   }*/
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   void _onConferenceWillJoin(message) {
     debugPrint("_onConferenceWillJoin broadcasted with message: $message");

@@ -13,6 +13,7 @@ Widget silverAppBarWithSearch ({
   double height = 180,
   double titleSize = 16.0,
   int childCount =1 ,
+  Function()? onPressed ,
 }){
   return CustomScrollView(
     slivers: <Widget>[
@@ -47,12 +48,14 @@ Widget silverAppBarWithSearch ({
           ),
           actions: [
             (showSearchIcon)? IconButton(
-              onPressed: (){
-                showSearch(
-                  context: context,
-                  delegate: CustomSearchDelegate(),
-                );
-              },
+              onPressed: onPressed == null? (){
+                // showSearch(
+                //   context: context,
+                //   delegate: CustomSearchDelegate(),
+                // );
+              }
+              :
+              onPressed,
               icon: const Icon(Icons.search),
             ): const Text('')
           ],

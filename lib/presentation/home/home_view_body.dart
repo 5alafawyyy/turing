@@ -5,7 +5,8 @@ import 'package:turing/core/widgets/body_text.dart';
 import 'package:turing/core/widgets/title_text.dart';
 import 'package:turing/presentation/communities/screens/communities_view/communities_view.dart';
 import 'package:turing/presentation/communities/screens/communities_view/widgets/communities_list.dart';
-import 'package:turing/presentation/rooms/widgets/rooms_slider.dart';
+
+import '../meetings/rooms_slider.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({Key? key}) : super(key: key);
