@@ -5,7 +5,7 @@ import 'package:turing/controllers/drawer_controller.dart';
 import 'package:turing/controllers/navigation_controller.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/presentation/drawer/drawer.dart';
-import 'package:turing/presentation/profile/screens/view/profile_view.dart';
+import 'package:turing/presentation/settings/settings_view.dart';
 import 'package:turing/presentation/search/search.dart';
 
 class ControlView extends GetView<DrawerControllerView> {
@@ -23,7 +23,7 @@ class ControlView extends GetView<DrawerControllerView> {
           GestureDetector(
             onTap: () {
               Get.to(
-                () => const ProfileView(),
+                () => const SettingsView(),
                 transition: Transition.rightToLeftWithFade,
                 duration: const Duration(milliseconds: 250),
               );

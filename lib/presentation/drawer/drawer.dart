@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turing/controllers/authController.dart';
-import 'package:turing/core/utils/data.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/presentation/auth/login/login_view.dart';
 import 'package:turing/presentation/communities/screens/communities_view/communities_view.dart';
 import 'package:turing/controllers/profile_controller.dart';
-import 'package:turing/presentation/profile/screens/profile_page/profile_page.dart';
-import 'package:turing/presentation/profile/screens/view/profile_view.dart';
-import 'package:turing/presentation/setting/setting_view.dart';
+import 'package:turing/presentation/profile/profile_page.dart';
+import 'package:turing/presentation/settings/settings_view.dart';
+
+import '../tic_tac_toe/game_view.dart';
 
 class MyDrawer extends StatelessWidget{
    const MyDrawer({Key? key}) : super(key: key);
@@ -32,7 +31,9 @@ class MyDrawer extends StatelessWidget{
                 textIconColor: kPrimaryColor,
                 tileColor: kSecondaryColor,
                 onTap: (){
-                  Get.toNamed(ProfileView.id);
+                  Get.to(() => ProfilePage(displayName: AuthController.instance.currentData.displayName, photoUrl: AuthController.instance.currentData.photoUrl),
+                    transition: Transition.downToUp,
+                  );
                 },
             ),
             buildDrawerItem(
@@ -45,12 +46,21 @@ class MyDrawer extends StatelessWidget{
               },
             ),
             buildDrawerItem(
+              text: 'Tic Tac Toe',
+              icon: Icons.gamepad_outlined,
+              textIconColor: kPrimaryColor,
+              tileColor: kSecondaryColor,
+              onTap: (){
+                Get.to(() => GameView());
+              },
+            ),
+            buildDrawerItem(
               text: 'Settings',
               icon: Icons.settings_outlined,
               textIconColor: kPrimaryColor,
               tileColor: kSecondaryColor,
               onTap: () {
-                Get.toNamed(SettingView.id);
+                Get.toNamed(SettingsView.id);
               },
             ),
             buildDrawerItem(

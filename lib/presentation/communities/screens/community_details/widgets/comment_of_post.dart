@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/body_text.dart';
 import '../../../../../core/widgets/title_text.dart';
-import '../../../../profile/screens/profile_page/profile_page.dart';
+import '../../../../profile/profile_page.dart';
 
 Widget commentOfPost({
 required String displayName,

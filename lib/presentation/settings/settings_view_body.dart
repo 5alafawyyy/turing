@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turing/presentation/auth/login/login_view.dart';
 import 'package:turing/presentation/profile/screens/edit_profile/edit_profile.dart';
-import 'package:turing/presentation/profile/widgets/profile_menu.dart';
+import 'package:turing/presentation/settings/widgets/settings_menu.dart';
 import 'package:turing/presentation/profile/widgets/profile_pic.dart';
-import 'package:turing/presentation/setting/setting_view.dart';
+import 'package:turing/presentation/change_theme/dark_light_mode_view.dart';
 
-import '../../../../controllers/authController.dart';
+import '../../controllers/authController.dart';
+import '../profile/profile_page.dart';
 
-class ProfileViewBody extends StatelessWidget {
-  const ProfileViewBody({Key? key}) : super(key: key);
+class SettingsViewBody extends StatelessWidget {
+  const SettingsViewBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +22,19 @@ class ProfileViewBody extends StatelessWidget {
               const SizedBox(
                   height: 20,
               ),
-              ProfileMenu(
-                text: "Edit Profile",
+              SettingsMenu(
+                text: "My Account",
                 icon: "assets/icons/user.png",
+                onPressed: (){
+                  Get.to(() => ProfilePage(displayName: AuthController.instance.currentData.displayName, photoUrl: AuthController.instance.currentData.photoUrl),
+                    transition: Transition.rightToLeftWithFade,
+                    duration: const Duration(milliseconds: 500),
+                  );
+                },
+              ),
+              SettingsMenu(
+                text: "Edit Profile",
+                icon: "assets/icons/pen.png",
                 onPressed: (){
                 Get.to(() => EditProfileView(),
                     transition: Transition.rightToLeftWithFade,
@@ -31,17 +42,17 @@ class ProfileViewBody extends StatelessWidget {
                 );
                 },
               ),
-              ProfileMenu(
-                text: "Settings",
-                icon: "assets/icons/settings.png",
+              SettingsMenu(
+                text: "Theme Mode",
+                icon: "assets/icons/dark-light.png",
                 onPressed: () {
-                  Get.to(() => const SettingView(),
+                  Get.to(() => const DarkLightModeView(),
                     transition: Transition.rightToLeftWithFade,
                     duration: const Duration(milliseconds: 500),
                   );
                 },
               ),
-              ProfileMenu(
+              SettingsMenu(
                 text: "Log Out",
                 icon: "assets/icons/exit.png",
                 onPressed: () async{

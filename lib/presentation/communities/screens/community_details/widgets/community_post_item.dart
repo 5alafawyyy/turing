@@ -4,7 +4,7 @@ import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/body_text.dart';
 import 'package:turing/core/widgets/icon_image_with_text.dart';
 import 'package:turing/core/widgets/title_text.dart';
-import '../../../../profile/screens/profile_page/profile_page.dart';
+import '../../../../profile/profile_page.dart';
 
 Widget communityPostItem({
   required String displayName,

@@ -20,9 +20,9 @@ import 'package:turing/presentation/communities/screens/community_details/commun
 import 'package:turing/presentation/home/home_view.dart';
 import 'package:turing/presentation/onboarding/obboarding_view.dart';
 import 'package:turing/presentation/profile/screens/edit_profile/edit_profile.dart';
-import 'package:turing/presentation/profile/screens/view/profile_view.dart';
+import 'package:turing/presentation/settings/settings_view.dart';
 import 'package:turing/presentation/rooms/screens/view/rooms_view.dart';
-import 'package:turing/presentation/setting/setting_view.dart';
+import 'package:turing/presentation/change_theme/dark_light_mode_view.dart';
 import 'package:turing/presentation/splash/splash_view.dart';
 import 'controllers/communities_controller.dart';
 import 'controllers/meeting_controller.dart';
@@ -73,9 +73,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: HomeView.id, page: ()=>  const HomeView()),
         GetPage(name: RoomsView.id, page: ()=>  const RoomsView()),
         GetPage(name: ArticlesView.id, page: ()=>  const ArticlesView()),
-        GetPage(name: ProfileView.id, page: ()=>  const ProfileView()),
+        GetPage(name: SettingsView.id, page: ()=>  const SettingsView()),
         // GetPage(name: ProfilePage.id, page: () => ProfilePage()),
-        GetPage(name: SettingView.id, page: ()=>  const SettingView()),
+        GetPage(name: DarkLightModeView.id, page: ()=>  const DarkLightModeView()),
         GetPage(name: CommunitiesView.id, page: ()=>  const CommunitiesView()),
         GetPage(name: CommunityPageDetailsView.id, page: ()=> const CommunityPageDetailsView()),
         GetPage(name: CreateCommunityView.id, page: ()=>   const CreateCommunityView()),
@@ -106,7 +106,25 @@ class MyApp extends StatelessWidget {
           foregroundColor: kPrimaryColor,
         ),
       ),
-      //home: SplashView(),
+
+      darkTheme: ThemeData.dark().copyWith(
+        brightness: Brightness.dark,
+        primaryColor: kBackgroundColor,
+        backgroundColor: kPrimaryColor,
+
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: GoogleFonts.poppinsTextTheme(),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: kPrimaryColor,
+          toolbarTextStyle: TextStyle(
+              fontFamily: 'Poppins'
+          ),
+          iconTheme: IconThemeData(
+            color: kLightColor,
+          ),
+          foregroundColor: kLightColor,
+        ),
+      ),
     );
   }
 }

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/round_image.dart';
 import 'package:turing/data/models/user.dart';
-import 'package:turing/presentation/profile/screens/profile_page/profile_page.dart';
+import 'package:turing/presentation/profile/profile_page.dart';
 
 import '../../../../../data/models/room_model.dart';
 
