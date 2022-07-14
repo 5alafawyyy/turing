@@ -6,7 +6,7 @@ import 'package:turing/core/widgets/body_text.dart';
 import 'package:turing/core/widgets/custom_text_form_field.dart';
 import 'package:turing/core/widgets/default_text_button.dart';
 import 'package:turing/core/widgets/title_text.dart';
-import 'package:turing/presentation/profile/controllers/profile_controller.dart';
+import 'package:turing/controllers/profile_controller.dart';
 
 import '../../../../controllers/authController.dart';
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:turing/core/utils/styles.dart';
-import 'package:turing/presentation/articles/controllers/articles_controller.dart';
+import 'package:turing/controllers/articles_controller.dart';
 import 'package:turing/presentation/articles/screens/article_details/article_details_view.dart';
 import 'package:turing/presentation/articles/screens/new_article/create_new_article_view.dart';
 import 'package:turing/presentation/articles/widgets/article_item.dart';

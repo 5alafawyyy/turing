@@ -31,16 +31,17 @@ class RoomProfile extends StatelessWidget {
               onTap: () {
                 Get.to(
                   () => ProfilePage(
-                    displayName: user.name,
-                    photoUrl: user.profileImage,
+                    displayName: user.displayName,
+                    photoUrl: user.photoUrl,
+                    // joined: user.joined.toString(),
                   ),
                 );
               },
               child: RoundImage(
-                path: 'assets/images/profile.png',
+                // path: 'assets/images/profile.png',
                 width: size,
                 height: size,
-                url: user.profileImage,
+                url: user.photoUrl,
               ),
             ),
           ],
@@ -54,7 +55,7 @@ class RoomProfile extends StatelessWidget {
             buildModeratorBadge(isModerator),
             Expanded(
               child: Text(
-                user.name.split(' ')[0],
+                user.displayName.split(' ')[0],
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
                 style: const TextStyle(

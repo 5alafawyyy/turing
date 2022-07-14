@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/silver_appbar_with_dots.dart';
-import 'package:turing/presentation/communities/screens/community_details/controllers/community_details_controller.dart';
+import 'package:turing/controllers/community_details_controller.dart';
 import 'package:turing/presentation/communities/screens/community_details/widgets/closed_community_body.dart';
 import 'package:turing/presentation/communities/screens/community_details/widgets/community_activity_body.dart';
 import 'package:turing/presentation/communities/screens/community_details/widgets/open_community_body.dart';
