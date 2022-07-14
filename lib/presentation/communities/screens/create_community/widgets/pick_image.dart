@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turing/core/utils/styles.dart';
-import 'package:turing/presentation/communities/screens/create_community/controllers/create_new_community_controller.dart';
+import 'package:turing/controllers/create_new_community_controller.dart';
 import 'package:turing/presentation/communities/screens/create_community/widgets/popup.dart';
 
 class PickImage extends StatelessWidget {

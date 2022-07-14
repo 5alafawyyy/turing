@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/presentation/rooms/widgets/rounded_image.dart';
-import '../../../controllers/authController.dart';
 import '../../../data/models/room_model.dart';
 
 class RoomCard extends StatelessWidget {
@@ -66,10 +65,10 @@ class RoomCard extends StatelessWidget {
         RoundedImage(
           margin: const EdgeInsets.only(top: 15, left: 25),
           path: 'assets/images/profile.png',
-        ),
+        ) ,
         RoundedImage(
             // path: 'assets/images/profile.png',
-            url: room.users[0].profileImage,
+            url: room.users[0].photoUrl,
         ),
       ],
     );
@@ -84,7 +83,7 @@ class RoomCard extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  room.users[i].name,
+                  room.users[i].displayName,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500,

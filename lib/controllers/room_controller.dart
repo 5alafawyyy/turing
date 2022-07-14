@@ -4,8 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:turing/controllers/authController.dart';
-
-import '../../../core/utils/data.dart';
+import '../core/utils/data.dart';
 
 class RoomController extends GetxController{
   static RoomController instance = RoomController();
@@ -13,9 +12,7 @@ class RoomController extends GetxController{
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   final RefreshController refreshController = RefreshController(initialRefresh: false);
-
-
-final TextEditingController newRoomTitleController = TextEditingController();
+  final TextEditingController newRoomTitleController = TextEditingController();
 
 
   String? validate(String? value) {
@@ -38,6 +35,16 @@ final TextEditingController newRoomTitleController = TextEditingController();
         },
       );
     }
+    update();
+  }
+  Future<void> joinRoom(String docId) async {
+    await collection.doc(docId).update(
+        {
+          'users': [1][profileData],
+          'speakerCount': 2,
+        },
+      );
+
     update();
   }
 

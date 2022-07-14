@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turing/core/utils/styles.dart';
-import 'package:turing/presentation/communities/screens/community_details/controllers/community_details_controller.dart';
+import 'package:turing/controllers/community_details_controller.dart';
 import 'package:turing/presentation/communities/screens/community_details/widgets/newCommentTextField.dart';
 import '../../../../../controllers/authController.dart';
 

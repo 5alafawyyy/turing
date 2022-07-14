@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turing/presentation/auth/login/login_view.dart';
 import 'package:turing/presentation/profile/screens/edit_profile/edit_profile.dart';
-import 'package:turing/presentation/profile/screens/notification/notification.dart';
 import 'package:turing/presentation/profile/widgets/profile_menu.dart';
 import 'package:turing/presentation/profile/widgets/profile_pic.dart';
 import 'package:turing/presentation/setting/setting_view.dart';
@@ -31,16 +30,6 @@ class ProfileViewBody extends StatelessWidget {
                     duration: const Duration(milliseconds: 500),
                 );
                 },
-              ),
-              ProfileMenu(
-                text: "Notifications",
-                icon: "assets/icons/notification.png",
-                onPressed: () {
-                  Get.to(() => NotificationsView(),
-                    transition: Transition.rightToLeftWithFade,
-                    duration: const Duration(milliseconds: 500),
-                  );
-                  },
               ),
               ProfileMenu(
                 text: "Settings",

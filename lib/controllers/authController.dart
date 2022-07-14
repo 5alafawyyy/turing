@@ -62,6 +62,7 @@ class AuthController extends GetxController {
       "uid": user?.uid,
       "displayName": user?.displayName,
       "photoUrl": user?.photoURL,
+      "joined": '${DateTime.now().day} ${DateTime.now().month} ${DateTime.now().year}',
     });
     update();
 
@@ -81,6 +82,7 @@ class AuthController extends GetxController {
           "uid": value.user?.uid,
           "displayName": value.user?.displayName,
           "photoUrl": value.user?.photoURL,
+          "joined": '${DateTime.now().day} ${DateTime.now().month} ${DateTime.now().year}',
         });
         // prefs.setString('userID', value.user?.uid);
       });

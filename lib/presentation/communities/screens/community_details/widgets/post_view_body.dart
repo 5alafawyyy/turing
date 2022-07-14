@@ -4,7 +4,7 @@ import 'package:turing/core/utils/styles.dart';
 import 'package:turing/presentation/communities/screens/community_details/widgets/comment_of_post.dart';
 import 'package:turing/presentation/communities/screens/community_details/widgets/community_post_item.dart';
 
-import '../controllers/community_details_controller.dart';
+import '../../../../../controllers/community_details_controller.dart';
 import 'create_comment.dart';
 
 class PostViewBody extends StatelessWidget {

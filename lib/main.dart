@@ -9,7 +9,7 @@ import 'package:turing/controllers/control_view.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/data/helper/binding.dart';
 import 'package:turing/presentation/articles/articles_view.dart';
-import 'package:turing/presentation/articles/controllers/articles_controller.dart';
+import 'package:turing/controllers/articles_controller.dart';
 import 'package:turing/presentation/articles/screens/article_details/article_details_view.dart';
 import 'package:turing/presentation/articles/screens/new_article/create_new_article_view.dart';
 import 'package:turing/presentation/auth/forget_password/forget_view.dart';
@@ -20,7 +20,6 @@ import 'package:turing/presentation/communities/screens/community_details/commun
 import 'package:turing/presentation/home/home_view.dart';
 import 'package:turing/presentation/onboarding/obboarding_view.dart';
 import 'package:turing/presentation/profile/screens/edit_profile/edit_profile.dart';
-import 'package:turing/presentation/profile/screens/notification/notification.dart';
 import 'package:turing/presentation/profile/screens/view/profile_view.dart';
 import 'package:turing/presentation/rooms/screens/view/rooms_view.dart';
 import 'package:turing/presentation/setting/setting_view.dart';
@@ -83,7 +82,6 @@ class MyApp extends StatelessWidget {
         GetPage(name: ArticleDetailsView.id, page: ()=>   const ArticleDetailsView()),
         GetPage(name: CreateNewArticleView.id, page: ()=>    const CreateNewArticleView()),
         GetPage(name: EditProfileView.id, page: () => EditProfileView()),
-        GetPage(name: NotificationsView.id, page: () => NotificationsView())
 
       ],
 

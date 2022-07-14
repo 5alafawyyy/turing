@@ -5,7 +5,7 @@ import 'package:turing/controllers/authController.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/body_text.dart';
 import 'package:turing/core/widgets/title_text.dart';
-import 'package:turing/presentation/profile/controllers/profile_controller.dart';
+import 'package:turing/controllers/profile_controller.dart';
 import 'package:turing/presentation/profile/screens/profile_page/profile_page.dart';
 
 class ProfilePic extends StatelessWidget {

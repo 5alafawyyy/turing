@@ -2,15 +2,12 @@ import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turing/core/utils/appId.dart';
-import 'package:turing/core/utils/data.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/utils/temp_token.dart';
 import 'package:turing/core/widgets/round_button.dart';
 import 'package:turing/core/widgets/round_image.dart';
 import 'package:turing/presentation/profile/screens/profile_page/profile_page.dart';
 import 'package:turing/presentation/rooms/screens/room_page/widgets/room_profile.dart';
-import 'package:turing/presentation/rooms/screens/video_call/video_call.dart';
-
 import '../../../../controllers/authController.dart';
 import '../../../../core/utils/channel.dart';
 import '../../../../data/models/room_model.dart';
@@ -115,8 +112,8 @@ class _RoomPageState extends State<RoomPage> {
             GestureDetector(
               onTap: () {
                 Get.to(() =>ProfilePage(
-                  displayName: 'AuthController.instance.currentData.displayName',
-                  photoUrl: 'AuthController.instance.currentData.photoUrl',
+                  displayName: AuthController.instance.currentData.displayName,
+                  photoUrl: AuthController.instance.currentData.photoUrl,
                 ),
                 );
               },
@@ -185,7 +182,10 @@ class _RoomPageState extends State<RoomPage> {
           child: IconButton(
             onPressed: () {},
             iconSize: 30,
-            icon: Icon(Icons.more_horiz),
+            icon: Icon(
+                Icons.more_horiz,
+              color: Colors.black,
+            ),
           ),
         ),
       ],
@@ -254,7 +254,7 @@ class _RoomPageState extends State<RoomPage> {
       child:RoundButton(
         onPressed: () {
           Get.back();
-          // Get.to(() => VideoCall());
+          dispose();
         },
         color: kPrimaryColor,
         child: const Text(

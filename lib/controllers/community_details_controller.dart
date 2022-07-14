@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turing/controllers/authController.dart';
-import '../../../../../controllers/communities_controller.dart';
-import '../../../../../core/utils/styles.dart';
+import 'communities_controller.dart';
+import '../core/utils/styles.dart';
 
 class CommunityDetailsController extends GetxController {
   final GlobalKey menuKey = GlobalKey();

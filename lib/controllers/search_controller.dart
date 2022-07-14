@@ -34,8 +34,67 @@ class SearchController extends GetxController {
 
   Future roomData(String queryString) async {
     return FirebaseFirestore.instance
-        .collection('chatRooms')
+        .collection('staticRooms')
         .where('title', isGreaterThanOrEqualTo: queryString)
         .get();
   }
+
+
+  bool isExecuted = false;
+  void searchPressed(){
+    isExecuted = true;
+    update();
+  }
+
+  void searchNotPressed(){
+    isExecuted = false;
+    update();
+  }
+  // change states for text Buttons
+  bool articlesButton = true;
+  bool communitiesButton = false;
+  bool usersButton = false;
+  bool roomsButton = false;
+
+  void changeArticlesStates() {
+    articlesButton = true;
+    communitiesButton = false;
+    usersButton = false;
+    roomsButton = false;
+
+    isExecuted = true;
+    update();
+  }
+
+  void changeCommunitiesStates() {
+    communitiesButton = true;
+    articlesButton = false;
+    usersButton = false;
+    roomsButton = false;
+
+    isExecuted = true;
+    update();
+  }
+
+  void changeUsersStates() {
+    usersButton = true;
+    communitiesButton = false;
+    articlesButton = false;
+    roomsButton = false;
+
+    isExecuted = true;
+    update();
+  }
+
+  void changeRoomsStates() {
+    roomsButton = true;
+    usersButton = false;
+    communitiesButton = false;
+    articlesButton = false;
+
+    isExecuted = true;
+    update();
+  }
+
+
 }

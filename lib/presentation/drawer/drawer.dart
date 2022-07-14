@@ -6,7 +6,7 @@ import 'package:turing/core/utils/data.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/presentation/auth/login/login_view.dart';
 import 'package:turing/presentation/communities/screens/communities_view/communities_view.dart';
-import 'package:turing/presentation/profile/controllers/profile_controller.dart';
+import 'package:turing/controllers/profile_controller.dart';
 import 'package:turing/presentation/profile/screens/profile_page/profile_page.dart';
 import 'package:turing/presentation/profile/screens/view/profile_view.dart';
 import 'package:turing/presentation/setting/setting_view.dart';

@@ -6,7 +6,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:turing/controllers/authController.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/round_button.dart';
-import 'package:turing/presentation/rooms/controllers/room_controller.dart';
+import 'package:turing/controllers/room_controller.dart';
 import 'package:turing/presentation/rooms/screens/room_page/room_page_details.dart';
 import 'package:turing/presentation/rooms/widgets/new_room_text_form_field.dart';
 import 'package:turing/presentation/rooms/widgets/room_card.dart';
@@ -38,7 +38,8 @@ class RoomsViewBody extends StatelessWidget {
           stream: controller.collection.snapshots(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             // Handling errors from firebase
-            if (snapshot.hasError) return Text('Error: ${snapshot.error}');
+            if (snapshot.hasError)
+              return Text('Error: ${snapshot.error}');
             return snapshot.hasData
                 ?
             SmartRefresher(
@@ -53,7 +54,7 @@ class RoomsViewBody extends StatelessWidget {
                     onDismissed: (direction) {
                       controller.collection.doc(document.id).delete();
                     },
-                    child: buildRoomCard( Room.fromJson(document),)
+                    child: buildRoomCard( Room.fromJson(document), document.id)
                   );
                 }).toList(),
               ),
@@ -61,36 +62,21 @@ class RoomsViewBody extends StatelessWidget {
             // Display if still loading data
                 :
             Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: kPrimaryColor,
+              ),
             );
           },
         ),
         buildStartRoomButton(),
-        // SmartRefresher(
-        //   enablePullDown: true,
-        //   controller: controller.refreshController,
-        //   onRefresh: _onRefresh,
-        //   onLoading: _onLoading,
-        //   child: ListView.builder(
-        //     padding: const EdgeInsets.only(
-        //       // bottom: 80,
-        //       left: 15,
-        //       right: 15,
-        //     ),
-        //     itemBuilder: (context, index) {
-        //
-        //       return buildRoomCard(Room.fromJson(document),);
-        //     },
-        //     itemCount: 1,
-        //   ),
-        // ),
       ],
     );
   }
 
-  Widget buildRoomCard(Room room) {
+  Widget buildRoomCard(Room room, String id) {
     return GestureDetector(
       onTap: () async {
+        RoomController.instance.joinRoom(id);
         await Permission.microphone.request();
         print(AuthController.instance.currentData.photoUrl);
         Get.bottomSheet(

@@ -52,6 +52,7 @@ dependencies:
   jitsi_meet: ^4.0.0
   agora_rtc_engine: ^5.2.0
   permission_handler: ^10.0.0
+  avatar_glow: ^2.0.2
 
 
 dev_dependencies:
@@ -63,9 +64,9 @@ flutter_icons:
   android: true
   ios: true
   image_path: "assets/icons/turing.png"
-  image_path_android: "assets/icons/turing.png"
-  adaptive_icon_background: "#ffffff"
-  adaptive_icon_foreground: "assets/icons/turing_foreground.png"
+#  image_path_android: "assets/icons/turing.png"
+#  adaptive_icon_background: "#ffffff"
+#  adaptive_icon_foreground: "assets/icons/turing_foreground.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
