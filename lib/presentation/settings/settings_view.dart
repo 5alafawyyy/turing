@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turing/core/utils/styles.dart';
-import 'package:turing/presentation/profile/screens/view/profile_view_body.dart';
+import 'package:turing/presentation/settings/settings_view_body.dart';
 
-class ProfileView extends StatelessWidget {
-  const ProfileView({Key? key}) : super(key: key);
-  static String id = '/profile';
+class SettingsView extends StatelessWidget {
+  const SettingsView({Key? key}) : super(key: key);
+  static String id = '/settings';
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class ProfileView extends StatelessWidget {
           onPressed: () => Get.back(),
         ),
         title: const Text(
-            'My Account',
+            'Settings',
             style: TextStyle(
               fontWeight: FontWeight.w400,
             ),
@@ -27,7 +27,7 @@ class ProfileView extends StatelessWidget {
         foregroundColor: kPrimaryColor,
         elevation: 0,
       ),
-      body: ProfileViewBody(),
+      body: SettingsViewBody(),
     );
   }
 }

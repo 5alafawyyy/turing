@@ -6,7 +6,7 @@ import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/utils/temp_token.dart';
 import 'package:turing/core/widgets/round_button.dart';
 import 'package:turing/core/widgets/round_image.dart';
-import 'package:turing/presentation/profile/screens/profile_page/profile_page.dart';
+import 'package:turing/presentation/profile/profile_page.dart';
 import 'package:turing/presentation/rooms/screens/room_page/widgets/room_profile.dart';
 import '../../../../controllers/authController.dart';
 import '../../../../core/utils/channel.dart';

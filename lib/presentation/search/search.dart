@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turing/core/utils/styles.dart';
-import 'package:turing/presentation/profile/screens/profile_page/profile_page.dart';
+import 'package:turing/presentation/profile/profile_page.dart';
 import 'package:turing/presentation/search/widgets/roomViewFromSearch.dart';
 import '../../controllers/search_controller.dart';
 import '../articles/screens/article_details/article_details_view.dart';
