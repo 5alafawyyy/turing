@@ -15,7 +15,7 @@ import 'package:turing/presentation/articles/screens/new_article/create_new_arti
 import 'package:turing/presentation/auth/forget_password/forget_view.dart';
 import 'package:turing/presentation/auth/login/login_view.dart';
 import 'package:turing/presentation/auth/register/register_view.dart';
-import 'package:turing/presentation/communities/screens/communities_view/communities_view.dart';
+import 'package:turing/presentation/communities/communities_view.dart';
 import 'package:turing/presentation/communities/screens/community_details/community_details_view.dart';
 import 'package:turing/presentation/home/home_view.dart';
 import 'package:turing/presentation/onboarding/obboarding_view.dart';
@@ -29,7 +29,7 @@ import 'controllers/meeting_controller.dart';
 import 'presentation/communities/screens/create_community/create_new_community_view.dart';
 
 
-int? onboardScreen = 0;
+int? onboardScreen ;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,8 +42,8 @@ void main() async {
   await AuthController.instance.getUserData();
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  onboardScreen = prefs.getInt("onboardScreen");
-  await prefs.setInt("onboardScreen", 1);
+  onboardScreen = await prefs.getInt("releaseTime");
+  await prefs.setInt("releaseTime", 1);
 
 
   runApp(const MyApp());

@@ -92,11 +92,14 @@ class _RoomPageState extends State<RoomPage> {
       appBar: AppBar(
         toolbarHeight: 70,
         automaticallyImplyLeading: false,
+        backgroundColor: kPrimaryColor,
         title: Row(
           children: [
             IconButton(
               iconSize: 30,
-              icon: const Icon(Icons.keyboard_arrow_down),
+              icon: const Icon(
+                  Icons.keyboard_arrow_down,
+              ),
               onPressed: () {
                 Get.back();
               },
@@ -104,7 +107,7 @@ class _RoomPageState extends State<RoomPage> {
             const Text(
               'All rooms',
               style: TextStyle(
-                color: Colors.black,
+                color: kLightColor,
                 fontSize: 15,
               ),
             ),

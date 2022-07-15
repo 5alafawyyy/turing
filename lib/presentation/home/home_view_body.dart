@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/body_text.dart';
 import 'package:turing/core/widgets/title_text.dart';
-import 'package:turing/presentation/communities/screens/communities_view/communities_view.dart';
-import 'package:turing/presentation/communities/screens/communities_view/widgets/communities_list.dart';
+import 'package:turing/presentation/communities/communities_view.dart';
+import 'package:turing/presentation/communities/widgets/communities_list.dart';
 
 import '../meetings/rooms_slider.dart';
 
@@ -45,7 +45,7 @@ class HomeViewBody extends StatelessWidget {
                           child: GestureDetector(
                             onTap: (){
                               Get.to(() => const CommunitiesView(),
-                                duration: const Duration(milliseconds: 1000),
+                                duration: const Duration(milliseconds: 400),
                                 transition: Transition.rightToLeft,
 
                               );

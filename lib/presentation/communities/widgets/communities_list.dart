@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:turing/presentation/communities/screens/communities_view/widgets/community_item.dart';
+import 'package:turing/presentation/communities/widgets/community_item.dart';
 import 'package:turing/presentation/communities/screens/community_details/community_details_view.dart';
-import '../../../../../controllers/communities_controller.dart';
-import '../../../../../core/utils/styles.dart';
-import '../../../../../controllers/community_details_controller.dart';
+import '../../../controllers/communities_controller.dart';
+import '../../../core/utils/styles.dart';
+import '../../../controllers/community_details_controller.dart';
 
 class CommunitiesList extends StatelessWidget {
 

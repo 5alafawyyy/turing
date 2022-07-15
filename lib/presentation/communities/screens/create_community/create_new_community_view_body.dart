@@ -26,13 +26,18 @@ class CreateCommunityViewBody extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kBackgroundColor,
           appBar: AppBar(
+            backgroundColor: kBackgroundColor,
             centerTitle: true,
             title: const Text(
               'Create New Community',
+              style: TextStyle(
+                color: kPrimaryColor,
+              ),
             ),
             leading: IconButton(
               icon: const Icon(
                 Icons.clear,
+                color: kPrimaryColor,
               ),
               onPressed: () {
                 Get.back();
