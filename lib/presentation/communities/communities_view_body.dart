@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/core/widgets/silver_appbar_with_search.dart';
-import 'package:turing/presentation/communities/screens/communities_view/widgets/communities_list.dart';
-import 'package:turing/presentation/communities/screens/communities_view/widgets/community_item.dart';
+import 'package:turing/presentation/communities/widgets/communities_list.dart';
+import 'package:turing/presentation/communities/widgets/community_item.dart';
 import 'package:turing/presentation/communities/screens/community_details/community_details_view.dart';
 import 'package:turing/presentation/communities/screens/create_community/create_new_community_view.dart';
 

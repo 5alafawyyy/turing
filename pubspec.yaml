@@ -61,7 +61,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.9.3
 
 flutter_icons:
-  android: true
+  android: "launcher_icon"
   ios: true
   image_path: "assets/icons/turing.png"
 #  image_path_android: "assets/icons/turing.png"

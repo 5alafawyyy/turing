@@ -8,23 +8,30 @@ import '../../../../../controllers/community_details_controller.dart';
 import 'create_comment.dart';
 
 class PostViewBody extends StatelessWidget {
-
-
-
-   final commentRef = CommunityDetailsController.instance.postRefComments.orderBy('createdAt', descending: true);
+  final commentRef = CommunityDetailsController.instance.postRefComments
+      .orderBy('createdAt', descending: true);
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       // future: commentRef.snapshot,
       builder: (context, snapshot) => Scaffold(
         appBar: AppBar(
+          backgroundColor: kBackgroundColor,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            onPressed: (){
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: kPrimaryColor,
+            ),
+            onPressed: () {
               Get.back();
             },
           ),
-          title: Text('${Get.arguments['displayName']}'),
+          title: Text(
+            '${Get.arguments['displayName']}',
+            style: TextStyle(
+              color: kPrimaryColor,
+            ),
+          ),
           centerTitle: true,
           elevation: 0,
         ),
@@ -59,7 +66,8 @@ class PostViewBody extends StatelessWidget {
               child: SingleChildScrollView(
                 child: StreamBuilder(
                   stream: commentRef.snapshots(),
-                  builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                  builder:
+                      (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                     if (snapshot.hasError) {
                       return Center(child: Text('Some error happened'));
                     }
@@ -78,11 +86,14 @@ class PostViewBody extends StatelessWidget {
                             return Container(
                               color: itemColor.withOpacity(0.2),
                               child: commentOfPost(
-                                  displayName: snapshot.data.docs[index]
-                                      .data()['displayName']
-                                      .toString(),
-                                  photoUrl: snapshot.data.docs[index].data()['photoUrl'],
-                                  body: snapshot.data.docs[index].data()['body'].toString(),
+                                displayName: snapshot.data.docs[index]
+                                    .data()['displayName']
+                                    .toString(),
+                                photoUrl: snapshot.data.docs[index]
+                                    .data()['photoUrl'],
+                                body: snapshot.data.docs[index]
+                                    .data()['body']
+                                    .toString(),
                               ),
                             );
                           },
@@ -93,7 +104,7 @@ class PostViewBody extends StatelessWidget {
                           },
                           itemCount: snapshot.data.docs.length,
                           keyboardDismissBehavior:
-                          ScrollViewKeyboardDismissBehavior.onDrag,
+                              ScrollViewKeyboardDismissBehavior.onDrag,
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                         ),
@@ -105,8 +116,6 @@ class PostViewBody extends StatelessWidget {
                 ),
               ),
             ),
-
-
           ],
         ),
       ),

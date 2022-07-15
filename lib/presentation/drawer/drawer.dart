@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:turing/controllers/authController.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/presentation/auth/login/login_view.dart';
-import 'package:turing/presentation/communities/screens/communities_view/communities_view.dart';
+import 'package:turing/presentation/communities/communities_view.dart';
 import 'package:turing/controllers/profile_controller.dart';
+import 'package:turing/presentation/onboarding/obboarding_view.dart';
 import 'package:turing/presentation/profile/profile_page.dart';
 import 'package:turing/presentation/settings/settings_view.dart';
 
@@ -32,6 +33,16 @@ class MyDrawer extends StatelessWidget{
                 tileColor: kSecondaryColor,
                 onTap: (){
                   Get.to(() => ProfilePage(displayName: AuthController.instance.currentData.displayName, photoUrl: AuthController.instance.currentData.photoUrl),
+                    transition: Transition.downToUp,
+                  );
+                },
+            ),buildDrawerItem(
+                text: 'See Introduction',
+                icon: Icons.live_tv,
+                textIconColor: kPrimaryColor,
+                tileColor: kSecondaryColor,
+                onTap: (){
+                  Get.to(() => OnBoardingView(),
                     transition: Transition.downToUp,
                   );
                 },

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:turing/presentation/communities/screens/communities_view/communities_view_body.dart';
+import 'package:turing/presentation/communities/communities_view_body.dart';
 
 class CommunitiesView extends StatelessWidget {
   const CommunitiesView({Key? key}) : super(key: key);

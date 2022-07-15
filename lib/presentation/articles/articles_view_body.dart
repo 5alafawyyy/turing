@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:turing/core/utils/styles.dart';
 import 'package:turing/controllers/articles_controller.dart';
 import 'package:turing/presentation/articles/screens/article_details/article_details_view.dart';

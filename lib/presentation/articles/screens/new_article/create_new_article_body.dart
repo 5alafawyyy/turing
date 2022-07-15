@@ -18,13 +18,18 @@ class CreateNewArticleBody extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
+        backgroundColor: kBackgroundColor,
         centerTitle: true,
         title: const Text(
           'Create New Article',
+          style: TextStyle(
+            color: kPrimaryColor,
+          ),
         ),
         leading: IconButton(
           icon: const Icon(
             Icons.clear,
+            color: kPrimaryColor,
           ),
           onPressed: () {
             Get.back();
