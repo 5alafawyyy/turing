@@ -35,6 +35,7 @@ The initial thinking is about how to fill the gap between the skilled ones and t
 * SQflite
 * Dio
 * GetX
+* Firebase
 
 # Aplication Screens
 ### Splash Screen & OnBoarding Screens
